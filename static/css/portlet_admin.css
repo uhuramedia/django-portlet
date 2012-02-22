@@ -1,0 +1,45 @@
+.staffview .handle {
+ cursor: move;
+}
+.slot .staff {
+ background-color: #fff;
+ font-size: 90%;
+ padding: 1px;
+ list-style-type: none;
+ overflow: auto;
+ margin: 0;
+ color: #000;
+}
+.slot .staff h2 {
+ margin: 0 5px;
+}
+.slot .staff h2 a {
+    text-decoration: underline;
+    font-size: 80%;
+}
+.slot .staff li {
+ float: left;
+ padding: 2px 6px;
+ margin-right: 10px;
+}
+.slot .staff li a {
+ display: block;
+ padding: 0 6px;
+ border: 1px solid #ccc;
+ border-radius: 2px;
+ box-shadow: 0 0 1px 1px #ccc;
+}
+.slot .staff-top { border-radius: 5px 5px 0 0; }
+.slot .staff-bottom { border-radius: 0 0 5px 5px; }
+.slot .prohibited .staff {
+ background: #cc0000;
+ color: #eee;
+}
+.slot .prohibited {
+ opacity: 0.5;
+}
+ul.portletcategories { list-style-type: none; margin: 0; padding: 0; }
+li.portletcategory { font-weight: bold; margin: 2px; padding: 5px; -moz-border-radius: 5px; background-color: #333; font-size: 14px; width: 800px; clear:both; float:left; }
+li.portletcategory ul { list-style-type: none; margin: 5px; padding: 0; display:none; font-size: 12px;}
+
+li.portlet { font-weight: normal; margin: 0; padding: 0; width: 250px; float: left; clear:none; }

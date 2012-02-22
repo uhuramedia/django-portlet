@@ -1,0 +1,20 @@
+<div class="slot{% if request.user.is_staff %} staffview{% endif %}" id="slot-{{ slot_name }}">
+    {% if request.user.is_staff %}
+        <div class="staff staff-top">
+            <h2>Slot {{ slot_name }} <a href="#" class="add-portlet" title="Add Portlet">Add</a></h2>
+        </div>
+    {% endif %}
+    {% for portlet in portlets %}
+        {% if not portlet.prohibited %}
+            <div class="portlet {{ portlet.portlet_type }}" id="portlet-{{ portlet.assignment.pk }}">
+                {% include portlet.template %}
+            </div>
+        {% else %}
+            {% if request.user.is_staff %}
+                <div class="portlet prohibited {{ portlet.portlet_type }}" id="portlet-{{ portlet.assignment.pk }}">
+                    {% include portlet.template %}
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>
