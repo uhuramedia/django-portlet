@@ -1,0 +1,12 @@
+{% extends 'portlet/base.html' %}
+{% block content %}
+    <p{% if portlet.classes %} class="{{ portlet.classes }}"{% endif %}>
+        {% if portlet.link %}
+            <a href="{{ portlet.link }}">
+        {% endif %}
+            <img src="{{ portlet.file.url }}" alt="{{ portlet.alt_text }}" />
+        {% if portlet.link %}
+            </a>
+        {% endif %}
+    </p>
+{% endblock %}

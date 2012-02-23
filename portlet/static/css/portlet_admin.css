@@ -1,8 +1,8 @@
 .staffview .handle {
  cursor: move;
 }
-.staffview .portlet {
- box-shadow: 0 0 5px 0 #666;
+.staff {
+    display: none;
 }
 .slot .staff {
  background-color: #fff;
@@ -22,6 +22,9 @@
     text-decoration: underline;
     font-size: 80%;
 }
+.slot .staff .dim {
+    color: #666;
+}
 .slot .staff li {
  float: left;
  padding: 2px 5px;
@@ -36,13 +39,30 @@
     background: #02779E;
     color: #fff;
 }
-.slot .staff-top { border-radius: 5px 5px 0 0; }
+.slot .staff-top {
+    border-radius: 5px 5px 0 0;
+}
+.slot .staff-bottom {
+    border-radius: 0 0 5px 5px;
+}
 .slot .prohibited .staff {
  background: #cc0000;
  color: #eee;
 }
 .slot .prohibited {
  opacity: 0.5;
+}
+#portletStaffToggleOverlay {
+    position: fixed;
+    top: 10px;
+    right: 210px;
+    padding: 4px;
+    background-color: #02779E;
+    display: none;
+    color: #fff;
+    z-index: 10000;
+    border-radius: 5px;
+    box-shadow: 0 0 50px 20px #333;
 }
 #portletStaffOverlay ul.portletcategories {
     list-style-type: none;

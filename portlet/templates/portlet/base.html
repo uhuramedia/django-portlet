@@ -1,8 +1,9 @@
 {% load cache %}
 {% if request.user.is_staff %}
     <ul class="staff">
-        <li>{{ portlet.assignment.position }}</li>
+        <li class="dim">{{ portlet.assignment.position }}</li>
         <li class="handle"><strong>{{ portlet.title }}</strong></li>
+        <li class="handle dim">{{ portlet.portlet_type }}</li>
         {% if portlet.prohibited %}<li>prohibited here</li>{% endif %}
         {% if portlet.assignment.inherit %}
             <li>[origin is {{ portlet.assignment.path }}]</li>
@@ -19,6 +20,7 @@
     </ul>
 {% endif %}
 {% cache 300 portlet.pk portlet.modified %}
+    {% block portlet_base %}
     {% if portlet.display_title %}
         <div class="header">
             {% block header %}<h2>{{ portlet.display_title }}</h2>{% endblock %}
@@ -27,4 +29,5 @@
     <div class="content">
         {% block content %}{% endblock %}
     </div>
+    {% endblock %}
 {% endcache %}

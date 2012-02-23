@@ -1,7 +1,7 @@
 <div class="slot{% if request.user.is_staff %} staffview{% endif %}" id="slot-{{ slot_name }}">
     {% if request.user.is_staff %}
         <div class="staff staff-top">
-            <h2>Slot {{ slot_name }} <a href="#" class="add-portlet" title="Add Portlet">+Add</a></h2>
+            <h2>{{ slot_name }} <a href="#" class="add-portlet" title="Add Portlet">+Add</a></h2>
         </div>
     {% endif %}
     {% for portlet in portlets %}
@@ -17,4 +17,9 @@
             {% endif %}
         {% endif %}
     {% endfor %}
+    {% if request.user.is_staff %}
+        <div class="staff staff-bottom">
+            <h2>/slot <a href="#" class="add-portlet" title="Add Portlet">+Add</a></h2>
+        </div>
+    {% endif %}
 </div>

@@ -161,3 +161,10 @@ class PlainTextPortlet(Portlet):
     class Meta:
         verbose_name = _('Text Portlet')
         verbose_name_plural = _('Text Portlets')
+        
+class ImagePortlet(Portlet):
+    template = 'portlet/image.html'
+    file = models.ImageField(upload_to="portletimages")
+    alt_text = models.CharField(max_length=255, blank=True)
+    link = models.CharField(max_length=255, blank=True)
+    classes = models.CharField(max_length=255, blank=True)

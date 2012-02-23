@@ -92,32 +92,53 @@ $(function() {
         win.focus();
         return false;
     });
-
+    var overlay = $('<div id="portletStaffToggleOverlay"><a href="#" id="portletStaffViewToggle">Toggle Editing</a></div>');
+    $('body').append(overlay);
+    $("#portletStaffToggleOverlay").show();
+    if(localStorage && localStorage.getItem('portletStaffToggleOverlay') == 1) {
+    	$(".staff").show();
+    };
+    $('#portletStaffViewToggle').click(function() {
+    	$(".staff").slideToggle(200);
+    	if(localStorage && localStorage.getItem('portletStaffToggleOverlay') == 1) {
+    		localStorage.setItem('portletStaffToggleOverlay', 0);
+    	} else {
+    		localStorage.setItem('portletStaffToggleOverlay', 1);
+    	};
+    	return false;
+    });
+    var portletStaffOverlay = false;
     $('.slot a.add-portlet').click(function() {
-        var overlay = $('<div id="portletStaffOverlay"></div>');
-        $('body').append(overlay);
-        var slot = getSlot($(this));
-        var slotId = getSlotId(slot);
-
-        $.get('/portlet/add/', function(data, textStatus, xdr) {
-            overlay.html('');
-            var html = '<ul class="portletcategories">'
-            for (var i = 0; i < data.length; i++) {
-                var item = data[i];
-                html += '<li class="portletcategory"><h2>'+ item.category;
-                html += '</h2><ul>';
-                for (var j = 0; j < item.portlets.length; j++) {
-                    html += '<li class="portlet"><a href="/portlet/add/?slot=' + slotId + '&path=' + location.pathname + '&pk=' + item.portlets[j].pk + '">' + item.portlets[j].title + '</a>';
-                }
-                html += '</ul></li>';
-            }
-            html += '</ul><a href="#" id="closePortletStaffOverlay">Close</a>';
-            $(html).appendTo(overlay);
-            $("#closePortletStaffOverlay").click(function() {
-            	$(this).parent().fadeOut().delay(400).remove();
-            })
-            $(".portletcategory").click(function(){$(this).find("ul").slideToggle(100)});
-            overlay.fadeIn();
-        }, 'json');
+    	if(!portletStaffOverlay) {
+    		portletStaffOverlay = true;
+	        var overlay = $('<div id="portletStaffOverlay"></div>');
+	        $('body').append(overlay);
+	        var slot = getSlot($(this));
+	        var slotId = getSlotId(slot);
+	
+	        $.get('/portlet/add/', function(data, textStatus, xdr) {
+	            overlay.html('');
+	            var html = '<ul class="portletcategories">'
+	            for (var i = 0; i < data.length; i++) {
+	                var item = data[i];
+	                html += '<li class="portletcategory"><h2>'+ item.category;
+	                html += '</h2><ul>';
+	                for (var j = 0; j < item.portlets.length; j++) {
+	                    html += '<li class="portlet"><a href="/portlet/add/?slot=' + slotId + '&path=' + location.pathname + '&pk=' + item.portlets[j].pk + '">' + item.portlets[j].title + '</a>';
+	                }
+	                html += '</ul></li>';
+	            }
+	            html += '</ul><a href="#" id="closePortletStaffOverlay">Close</a>';
+	            $(html).appendTo(overlay);
+	            $("#closePortletStaffOverlay").click(function() {
+	            	$(this).parent().fadeOut().delay(400).remove();
+	            	portletStaffOverlay = false;
+	            	return false;
+	            })
+	            $(".portletcategory").click(function(){$(this).find("ul").slideToggle(100)});
+	            overlay.fadeIn();
+	        }, 'json');
+    	};
+        return false;
     });
 });
