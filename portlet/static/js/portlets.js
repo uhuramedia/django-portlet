@@ -94,27 +94,29 @@ $(function() {
     });
 
     $('.slot a.add-portlet').click(function() {
-        var overlay = $('#overlay');
+        var overlay = $('<div id="portletStaffOverlay"></div>');
+        $('body').append(overlay);
         var slot = getSlot($(this));
         var slotId = getSlotId(slot);
 
         $.get('/portlet/add/', function(data, textStatus, xdr) {
-            overlay.css({top: '100px', left: '100px'});
             overlay.html('');
             var html = '<ul class="portletcategories">'
             for (var i = 0; i < data.length; i++) {
-
                 var item = data[i];
-                html += '<li class="portletcategory">'+ item.category;
-                html += '<ul>';
+                html += '<li class="portletcategory"><h2>'+ item.category;
+                html += '</h2><ul>';
                 for (var j = 0; j < item.portlets.length; j++) {
                     html += '<li class="portlet"><a href="/portlet/add/?slot=' + slotId + '&path=' + location.pathname + '&pk=' + item.portlets[j].pk + '">' + item.portlets[j].title + '</a>';
                 }
                 html += '</ul></li>';
             }
-            html += '</ul>';
+            html += '</ul><a href="#" id="closePortletStaffOverlay">Close</a>';
             $(html).appendTo(overlay);
-            $(".portletcategory").click(function(){$(this).children().toggle()});
+            $("#closePortletStaffOverlay").click(function() {
+            	$(this).parent().fadeOut().delay(400).remove();
+            })
+            $(".portletcategory").click(function(){$(this).find("ul").slideToggle(100)});
             overlay.fadeIn();
         }, 'json');
     });

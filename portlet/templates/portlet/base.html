@@ -1,16 +1,19 @@
 {% load cache %}
 {% if request.user.is_staff %}
     <ul class="staff">
-        {% if portlet.prohibited %}<li>prohibited</li>{% endif %}
-        <li class="handle">{{ portlet.assignment }}</li>
+        <li>{{ portlet.assignment.position }}</li>
+        <li class="handle"><strong>{{ portlet.title }}</strong></li>
+        {% if portlet.prohibited %}<li>prohibited here</li>{% endif %}
+        {% if portlet.assignment.inherit %}
+            <li>[origin is {{ portlet.assignment.path }}]</li>
+        {% endif %}
     </ul>
     <ul class="staff">
         {% if portlet.assignment.inherit %}
             <li><a href="#" class="delete-here">Block here</a></li>
             <li><a href="#" class="delete-here-inherit">Block here and from all sub-pages</a></li>
-        {% else %}
-            <li><a href="#" class="inherit" title="Inherit this to sup-pages">{{ portlet.assignment.inherit|yesno:"inherited,not inherited" }}</a></li>
         {% endif %}
+        <li><a href="#" class="inherit" title="Inherit this to sup-pages">{{ portlet.assignment.inherit|yesno:"inherited,not inherited" }}</a></li>
         <li><a href="#" class="delete">Delete</a></li>
         <li><a href="{{ portlet.get_edit_link }}?_popup=1" class="edit popuplink">Edit</a></li>
     </ul>
@@ -18,7 +21,7 @@
 {% cache 300 portlet.pk portlet.modified %}
     {% if portlet.display_title %}
         <div class="header">
-            {% block header %}<h2>{{ portlet.title }}</h2>{% endblock %}
+            {% block header %}<h2>{{ portlet.display_title }}</h2>{% endblock %}
         </div>
     {% endif %}
     <div class="content">

@@ -1,9 +1,14 @@
 .staffview .handle {
  cursor: move;
 }
+.staffview .portlet {
+ box-shadow: 0 0 5px 0 #666;
+}
 .slot .staff {
  background-color: #fff;
- font-size: 90%;
+ background-color: rgba(255, 255, 255, 0.9);
+ font-size: 11px;
+ font-family: "Lucida Sans Unicode", "Lucida Sans", verdana, sans-serif;
  padding: 1px;
  list-style-type: none;
  overflow: auto;
@@ -19,18 +24,19 @@
 }
 .slot .staff li {
  float: left;
- padding: 2px 6px;
- margin-right: 10px;
+ padding: 2px 5px;
 }
 .slot .staff li a {
  display: block;
  padding: 0 6px;
- border: 1px solid #ccc;
  border-radius: 2px;
  box-shadow: 0 0 1px 1px #ccc;
 }
+.slot .staff li a:hover {
+    background: #02779E;
+    color: #fff;
+}
 .slot .staff-top { border-radius: 5px 5px 0 0; }
-.slot .staff-bottom { border-radius: 0 0 5px 5px; }
 .slot .prohibited .staff {
  background: #cc0000;
  color: #eee;
@@ -38,8 +44,31 @@
 .slot .prohibited {
  opacity: 0.5;
 }
-ul.portletcategories { list-style-type: none; margin: 0; padding: 0; }
-li.portletcategory { font-weight: bold; margin: 2px; padding: 5px; -moz-border-radius: 5px; background-color: #333; font-size: 14px; width: 800px; clear:both; float:left; }
-li.portletcategory ul { list-style-type: none; margin: 5px; padding: 0; display:none; font-size: 12px;}
-
-li.portlet { font-weight: normal; margin: 0; padding: 0; width: 250px; float: left; clear:none; }
+#portletStaffOverlay ul.portletcategories {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+#portletStaffOverlay li.portletcategory { font-weight: bold; margin: 2px; padding: 5px; -moz-border-radius: 5px; background-color: #333; font-size: 14px; width: 800px; clear:both; float:left; }
+#portletStaffOverlay li.portletcategory ul { list-style-type: none; margin: 5px; padding: 0; display:none; font-size: 12px;}
+#portletStaffOverlay li.portlet { font-weight: normal; margin: 0; padding: 0; width: 250px; float: left; clear:none; }
+#portletStaffOverlay { 
+    position: fixed;
+    top: 100px;
+    left: 25%;
+    padding: 4px;
+    background-color: #111;
+    display: none;
+    color: #fff;
+    z-index: 10000;
+    border-radius: 5px;
+    box-shadow: 0 0 50px 20px #333;
+}
+#portletStaffOverlay h2 {
+    cursor: pointer;
+}
+#closePortletStaffOverlay {
+    margin: 4px 10px;
+    display: block;
+}

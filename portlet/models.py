@@ -6,14 +6,15 @@ from django.utils.translation import ugettext_lazy as _
 from django.template import loader, Context
 from django.template.defaultfilters import slugify
 from django.core import urlresolvers
+from django.db.models.fields.related import SingleRelatedObjectDescriptor
 
 class Portlet(models.Model):
     template = 'portlet/base.html'
     title = models.CharField(max_length=100)
-    display_title = models.BooleanField(default=False)
+    display_title = models.CharField(max_length=255, blank=True, default="")
     portlet_type = models.SlugField(editable=False)
-    created = models.DateTimeField(default=datetime.datetime.now)
-    modified = models.DateTimeField(auto_now=True, default=datetime.datetime.now)
+    created = models.DateTimeField(default=datetime.datetime.now, editable=False)
+    modified = models.DateTimeField(auto_now=True, default=datetime.datetime.now, editable=False)
 
     def slug(self, lang=None):
         return slugify(self.title)
@@ -42,6 +43,20 @@ class Portlet(models.Model):
         return urlresolvers.reverse('admin:%s_%s_change' % (self._meta.app_label,
                                                             self.portlet_type.lower()),
                                     args=(self.pk,))
+    
+    @staticmethod
+    def select_subclasses(*subclasses):
+        if not subclasses:
+            subclasses = Portlet.get_subclasses()
+        new_qs = Portlet.objects.all().select_related(*subclasses)
+        new_qs.subclasses = subclasses
+        return new_qs
+
+    @staticmethod
+    def get_subclasses():
+        return [o for o in dir(Portlet)
+                      if isinstance(getattr(Portlet, o), SingleRelatedObjectDescriptor)\
+                      and issubclass(getattr(Portlet,o).related.model, Portlet)]
 
     class Meta:
         verbose_name = _('Portlet')
@@ -119,13 +134,15 @@ class PortletAssignment(models.Model):
             # for other parts of path, check if there are inherited portlets
             query |= Q(path=p,
                        inherit=True)
-        return PortletAssignment.objects.filter(query).filter(slot=slot).select_related().order_by('-prohibit', 'position', '-path')
+        return PortletAssignment.objects.filter(query).filter(slot=slot).\
+            select_related(*["portlet__%s" % s for s in Portlet.get_subclasses()]).\
+            order_by('-prohibit', 'position', '-path')
 
     class Meta:
         verbose_name = _('Portlet Assignment')
         verbose_name_plural = _('Portlet Assignments')
         ordering = ('position',)
-        unique_together = ('path', 'slot', 'position', 'prohibit')
+        unique_together = ('portlet', 'path', 'slot', 'position', 'prohibit')
 
 
 class HTMLPortlet(Portlet):
