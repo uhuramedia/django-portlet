@@ -7,6 +7,7 @@ from django.template import loader, Context
 from django.template.defaultfilters import slugify
 from django.core import urlresolvers
 from django.db.models.fields.related import SingleRelatedObjectDescriptor
+from django.conf import settings
 
 class Portlet(models.Model):
     template = 'portlet/base.html'
@@ -84,6 +85,9 @@ class PortletAssignment(models.Model):
     slot = models.SlugField()
     position = models.PositiveIntegerField(default=0)
     prohibit = models.BooleanField(default=False, help_text="Blocks this portlet")
+    language = models.CharField(max_length=5, db_index=True, 
+                                choices=settings.LANGUAGES, 
+                                default=settings.LANGUAGES[0])
     
     def __unicode__(self):
         return "[%s] %s (%s) @ %s" % (self.portlet, self.slot, self.position, self.path)
@@ -126,7 +130,7 @@ class PortletAssignment(models.Model):
             assignment.save()
     
     @staticmethod
-    def get_for_path(path, slot):
+    def get_for_path(path, slot, language):
         """ get all assigned portlets for path"""
         path = split_path(path)
         query = Q(path=path.pop(0))
@@ -134,7 +138,8 @@ class PortletAssignment(models.Model):
             # for other parts of path, check if there are inherited portlets
             query |= Q(path=p,
                        inherit=True)
-        return PortletAssignment.objects.filter(query).filter(slot=slot).\
+        return PortletAssignment.objects.filter(query).\
+            filter(slot=slot, language=language).\
             select_related(*["portlet__%s" % s for s in Portlet.get_subclasses()]).\
             order_by('-prohibit', 'position', '-path')
 
@@ -142,7 +147,7 @@ class PortletAssignment(models.Model):
         verbose_name = _('Portlet Assignment')
         verbose_name_plural = _('Portlet Assignments')
         ordering = ('position',)
-        unique_together = ('portlet', 'path', 'slot', 'position', 'prohibit')
+        unique_together = ('portlet', 'path', 'slot', 'position', 'prohibit', 'language')
 
 
 class HTMLPortlet(Portlet):
