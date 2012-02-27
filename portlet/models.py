@@ -85,7 +85,7 @@ class PortletAssignment(models.Model):
     slot = models.SlugField()
     position = models.PositiveIntegerField(default=0)
     prohibit = models.BooleanField(default=False, help_text="Blocks this portlet")
-    language = models.CharField(max_length=5, db_index=True, 
+    language = models.CharField(max_length=5, db_index=True, blank=True,
                                 choices=settings.LANGUAGES, 
                                 default=settings.LANGUAGES[0])
     
@@ -139,7 +139,7 @@ class PortletAssignment(models.Model):
             query |= Q(path=p,
                        inherit=True)
         return PortletAssignment.objects.filter(query).\
-            filter(slot=slot, language=language).\
+            filter(slot=slot).filter(Q(language=language) | Q(language="")).\
             select_related(*["portlet__%s" % s for s in Portlet.get_subclasses()]).\
             order_by('-prohibit', 'position', '-path')
 

@@ -2,6 +2,7 @@
 {% if request.user.is_staff %}
     <ul class="staff">
         <li class="dim">{{ portlet.assignment.position }}</li>
+        <li class="dim">{{ portlet.assignment.language|default:"global" }}</li>
         <li class="handle"><strong>{{ portlet.title }}</strong></li>
         <li class="handle dim">{{ portlet.portlet_type }}</li>
         {% if portlet.prohibited %}<li>prohibited here</li>{% endif %}

@@ -3,6 +3,7 @@ from portlet.models import HTMLPortlet, Portlet, PortletAssignment, \
     PlainTextPortlet, ImagePortlet
 
 class PortletAssignmentInline(admin.TabularInline):
+    extra = 0
     model = PortletAssignment
 
 class PortletAdmin(admin.ModelAdmin):
