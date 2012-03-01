@@ -1,0 +1,8 @@
+{% extends 'portlet/base.html' %}
+{% block content %}
+<object width="{{ portlet.width }}" height="{{ portlet.height }}">
+    <param name="movie" value="{{ portlet.swf.url }}">
+    <param name="FlashVars" value="{{ portlet.flash_vars }}">
+    <embed src="{{ portlet.swf.url }}" FlashVars="{{ portlet.flash_vars }}" width="{{ portlet.width }}" height="{{ portlet.height }}"></embed>
+</object>
+{% endblock %}

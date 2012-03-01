@@ -166,10 +166,19 @@ class PlainTextPortlet(Portlet):
     class Meta:
         verbose_name = _('Text Portlet')
         verbose_name_plural = _('Text Portlets')
-        
+
+
 class ImagePortlet(Portlet):
     template = 'portlet/image.html'
     file = models.ImageField(upload_to="portletimages")
     alt_text = models.CharField(max_length=255, blank=True)
     link = models.CharField(max_length=255, blank=True)
     classes = models.CharField(max_length=255, blank=True)
+
+
+class FlashPortlet(Portlet):
+    template = 'portlet/flash.html'
+    swf = models.FileField(upload_to="portletflash")
+    width = models.IntegerField(default=300)
+    height = models.IntegerField(default=200)
+    flash_vars = models.CharField(help_text=u"clickTAG=http://www.example.com/", max_length=255, blank=True, default="")
