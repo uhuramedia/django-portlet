@@ -90,7 +90,7 @@ class PortletAssignment(models.Model):
                                 default=settings.LANGUAGES[0][0])
     
     def __unicode__(self):
-        return "[%s] %s (%s) @ %s" % (self.portlet, self.slot, self.position, self.path)
+        return u"[%s] %s (%s) @ %s" % (self.portlet, self.slot, self.position, self.path)
     
     def move_up(self):
         return self.move(-1)
