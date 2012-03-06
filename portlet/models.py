@@ -44,6 +44,11 @@ class Portlet(models.Model):
         return urlresolvers.reverse('admin:%s_%s_change' % (self._meta.app_label,
                                                             self.portlet_type.lower()),
                                     args=(self.pk,))
+        
+    def is_assigned(self):
+        return self.portletassignment_set.all().count() > 0
+    
+    is_assigned.boolean = True
     
     @staticmethod
     def select_subclasses(*subclasses):

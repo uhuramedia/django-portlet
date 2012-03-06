@@ -7,9 +7,14 @@ class PortletAssignmentInline(admin.TabularInline):
     model = PortletAssignment
 
 class PortletAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ('title', 'portlet_type', 'display_title', 'created', 'modified', 'is_assigned')
+    ordering = ('title',)
     inlines = [PortletAssignmentInline]
-admin.site.register(Portlet, PortletAdmin)
+
+class PortletMasterAdmin(PortletAdmin):
+    def has_add_permission(self, request):
+        return False
+admin.site.register(Portlet, PortletMasterAdmin)
 
 class HTMLPortletAdmin(PortletAdmin):
     pass
