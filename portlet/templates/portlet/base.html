@@ -24,7 +24,16 @@
     {% block portlet_base %}
     {% if portlet.display_title %}
         <div class="header">
-            {% block header %}<h2>{% block portlet_header_extra %}{% endblock %} {{ portlet.display_title }}</h2>{% endblock %}
+            {% block header %}
+                <h2>
+                    {% block portlet_header_extra %}{% endblock %}
+                    {% if portlet.display_title_link %}
+                        <a href="{{ portlet.display_title_link }}" title="{{ portlet.display_title }}">
+                            {{ portlet.display_title }}
+                        </a>
+                    {% endif %}
+                </h2>
+            {% endblock %}
         </div>
     {% endif %}
     <div class="content">

@@ -13,6 +13,7 @@ class Portlet(models.Model):
     template = 'portlet/base.html'
     title = models.CharField(max_length=100)
     display_title = models.CharField(max_length=255, blank=True, default="")
+    display_title_link = models.CharField(max_length=255, blank=True, default="")
     portlet_type = models.SlugField(editable=False)
     created = models.DateTimeField(default=datetime.datetime.now, editable=False)
     modified = models.DateTimeField(auto_now=True, default=datetime.datetime.now, editable=False)
