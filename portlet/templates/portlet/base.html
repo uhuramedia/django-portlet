@@ -1,4 +1,4 @@
-{% load cache %}
+{% load cache i18n %}
 {% if request.user.is_staff %}
     <ul class="staff">
         <li class="dim">{{ portlet.assignment.position }}</li>
@@ -20,7 +20,8 @@
         <li><a href="{{ portlet.get_edit_link }}?_popup=1" class="edit popuplink">Edit</a></li>
     </ul>
 {% endif %}
-{% cache 300 portlet.pk portlet.modified %}
+{% get_current_language as LANGUAGE_CODE %}
+{% cache 300 portlet.pk portlet.modified LANGUAGE_CODE %}
     {% block portlet_base %}
     {% if portlet.display_title %}
         <div class="header">
