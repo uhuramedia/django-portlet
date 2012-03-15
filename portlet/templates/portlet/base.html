@@ -21,7 +21,7 @@
     </ul>
 {% endif %}
 {% get_current_language as LANGUAGE_CODE %}
-{% cache 300 portlet.pk portlet.modified LANGUAGE_CODE %}
+{% cache 300 portlet.pk portlet.modified LANGUAGE_CODE %}{% spaceless %}
     {% block portlet_base %}
     {% if portlet.display_title %}
         <div class="header">
@@ -30,7 +30,9 @@
                     {% block portlet_header_extra %}{% endblock %}
                     {% if portlet.display_title_link %}
                         <a href="{{ portlet.display_title_link }}" title="{{ portlet.display_title }}">
-                            {{ portlet.display_title }}
+                    {% endif %}
+                        {{ portlet.display_title }}
+                    {% if portlet.display_title_link %}
                         </a>
                     {% endif %}
                 </h2>
@@ -41,4 +43,4 @@
         {% block content %}{% endblock %}
     </div>
     {% endblock %}
-{% endcache %}
+{% endspaceless %}{% endcache %}
