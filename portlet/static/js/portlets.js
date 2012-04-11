@@ -135,7 +135,7 @@ $(function() {
 	            	portletStaffOverlay = false;
 	            	return false;
 	            })
-	            $(".portletcategory a").click(function(e){
+	            $(".portletcategory > a").click(function(e){
 	            	var el = $('#portletcategories');
 	            	el.children("li").removeClass("active");
 	            	el.find("ul").hide();
