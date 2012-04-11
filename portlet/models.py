@@ -29,6 +29,9 @@ class Portlet(models.Model):
             self.portlet_type = self.__class__.__name__
         super(Portlet, self).save(*args, **kwargs)
 
+    def update_type(self):
+        self.portlet_type = self.__class__.__name__
+
     def update(self, request):
         self.request = request
 

@@ -63,7 +63,7 @@ def add(request):
                 data[p.portlet_type] = []
             data[p.portlet_type].append({'title': p.title, 'pk': p.pk})
         data = [ {'category': k, 'portlets': v} for k,v in data.items()]
-        data.sort(lambda x,y: cmp(len(y['portlets']), len(x['portlets'])))
+        data.sort(lambda x, y: cmp(len(y['portlets']), len(x['portlets'])))
         return HttpResponse(simplejson.dumps(data))
 
 def moveup(request, pk):

@@ -10,6 +10,13 @@ class PortletAdmin(admin.ModelAdmin):
     list_display = ('title', 'portlet_type', 'display_title', 'created', 'modified', 'is_assigned')
     ordering = ('title',)
     inlines = [PortletAssignmentInline]
+    actions = ('update_type',)
+
+    def update_type(self, request, queryset):
+        for obj in queryset:
+            obj.update_type()
+            obj.save()
+
 
 class PortletMasterAdmin(PortletAdmin):
     def has_add_permission(self, request):

@@ -118,11 +118,11 @@ $(function() {
 	
 	        $.get('/portlet/add/', function(data, textStatus, xdr) {
 	            overlay.html('');
-	            var html = '<ul class="portletcategories">'
+	            var html = '<ul class="portletcategories" id="portletcategories">'
 	            for (var i = 0; i < data.length; i++) {
 	                var item = data[i];
-	                html += '<li class="portletcategory"><h2>'+ item.category;
-	                html += '</h2><ul>';
+	                html += '<li class="portletcategory"><a href="#">'+ item.category;
+	                html += '</a><ul>';
 	                for (var j = 0; j < item.portlets.length; j++) {
 	                    html += '<li class="portlet"><a href="/portlet/add/?slot=' + slotId + '&path=' + location.pathname + '&pk=' + item.portlets[j].pk + '">' + item.portlets[j].title + '</a>';
 	                }
@@ -135,7 +135,13 @@ $(function() {
 	            	portletStaffOverlay = false;
 	            	return false;
 	            })
-	            $(".portletcategory").click(function(){$(this).find("ul").slideToggle(100)});
+	            $(".portletcategory a").click(function(e){
+	            	var el = $('#portletcategories');
+	            	el.children("li").removeClass("active");
+	            	el.find("ul").hide();
+	            	$(this).parent().addClass("active").find("ul").fadeIn(100);
+	            	e.preventDefault();
+	            });
 	            overlay.fadeIn();
 	        }, 'json');
     	};
