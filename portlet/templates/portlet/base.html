@@ -21,7 +21,7 @@
     </ul>
 {% endif %}
 {% get_current_language as LANGUAGE_CODE %}
-{% cache 300 portlet.pk portlet.modified LANGUAGE_CODE %}{% spaceless %}
+{% cache 900 portlet_fragement portlet.pk portlet.modified.isoformat LANGUAGE_CODE %}{% spaceless %}
     {% block portlet_base %}
     {% if portlet.display_title %}
         <div class="header">
