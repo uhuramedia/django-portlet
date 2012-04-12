@@ -15,13 +15,13 @@
             <li><a href="#" class="delete-here">Block here</a></li>
             <li><a href="#" class="delete-here-inherit">Block here and from all sub-pages</a></li>
         {% endif %}
-        <li><a href="#" class="inherit" title="Inherit this to sup-pages">{{ portlet.assignment.inherit|yesno:"inherited,not inherited" }}</a></li>
+        <li><a href="#" class="inherit" title="Inherit this to sub-pages">{{ portlet.assignment.inherit|yesno:"inherited,not inherited" }}</a></li>
         <li><a href="#" class="delete">Delete</a></li>
         <li><a href="{{ portlet.get_edit_link }}?_popup=1" class="edit popuplink">Edit</a></li>
     </ul>
 {% endif %}
 {% get_current_language as LANGUAGE_CODE %}
-{% cache 900 portlet_fragement portlet.pk portlet.modified.isoformat LANGUAGE_CODE %}{% spaceless %}
+{% cache 900 portlet_fragment portlet.pk portlet.modified.isoformat LANGUAGE_CODE %}{% spaceless %}
     {% block portlet_base %}
     {% if portlet.display_title %}
         <div class="header">
