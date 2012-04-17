@@ -57,63 +57,75 @@
 }
 #portletStaffToggleOverlay {
     position: fixed;
-    top: 10px;
-    right: 210px;
-    padding: 4px;
+    top: 0;
+    left: 0;
     background-color: #02779E;
     display: none;
     color: #fff;
     z-index: 10000;
-    border-radius: 5px;
-    box-shadow: 0 0 50px 20px #333;
+    box-shadow: 0 0 3px #333;
+}
+#portletStaffToggleOverlay a {
+    display: block;
+    padding: 10px;
+    height: 20px;
+    width: 200px;
+    font-family: "Lucida Grande", verdana, sans-serif;
 }
 #portletStaffOverlay { 
+    font-family: "Lucida Grande", verdana, sans-serif;
     position: fixed;
-    top: 0;
+    top: 40px;
     left: 0;
     padding: 0;
     background-color: #111;
     display: none;
     color: #fff;
-    z-index: 10000;
+    z-index: 9000;
     border-radius: 0 0 10px 0;
-    box-shadow: 0 0 50px 20px #333;
 }
-#portletStaffOverlay ul.portletcategories {
+#portletcategories {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: auto;
 }
-#portletStaffOverlay li.portletcategory {
+#portletcategories > li {
     font-weight: normal;
     margin: 0;
-    padding: 3px 10px;
-    font-size: 13px;
+    font-size: 11px;
     clear:both;
-    width: 200px;
+    width: 220px;
 }
-#portletStaffOverlay li.portletcategory.active {
+#portletcategories li a {
+    display: block;
+    padding: 2px 4px 1px;
+}
+#portletcategories > li > a {
+    padding: 3px 10px 2px;
+    border-bottom: 1px solid #333;
+}
+#portletcategories li.active {
     background: #02779E;
 }
-#portletStaffOverlay li.portletcategory a:hover {
+#portletcategories li a:hover {
     background: #02779E;
 }
-#portletStaffOverlay li.portletcategory ul {
+#portletcategories ul {
     list-style-type: circle;
     position: absolute;
     left: 220px;
-    margin: -20px 0 0;
-    padding: 5px;
+    margin: -23px 0 0;
+    padding: 0;
     display:none;
     font-size: 11px;
     background: #111;
     border-radius: 0 10px 10px 0;
-    width: 900px;
+    width: 750px;
 }
-#portletStaffOverlay li.portlet {
+#portletcategories ul li {
     font-weight: normal;
-    margin: 0 20px;
+    margin: 0;
     padding: 0;
     width: 250px;
     overflow: hidden;

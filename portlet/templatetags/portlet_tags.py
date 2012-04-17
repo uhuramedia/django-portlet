@@ -1,6 +1,7 @@
 from django import template
 from django.utils import translation
 from portlet.models import PortletAssignment
+from hashlib import md5
 
 register = template.Library()
 
@@ -29,4 +30,18 @@ def slot(context, slot_name, path_override=None, path_extra=None):
         portlet.prohibited = portlet.pk in blocklist
         portlets.append(portlet)
         
-    return {'portlets': portlets, 'slot_name': slot_name, 'request': request}
+    hex = get_color(slot_name)
+    color = {'background': hex, 'contrast': get_contrast_color(hex)}
+
+    return {'portlets': portlets, 'slot_name': slot_name, 'request': request,
+            'color': color}
+
+
+def get_color(name):
+    return md5((name).encode('latin1', 'replace')).hexdigest()[:6]
+
+def get_contrast_color(hexcolor):
+    hexcolor = int("0x" + hexcolor, 16)
+    if hexcolor > 0xffffff / 2:
+        return "000000"
+    return "FFFFFF"

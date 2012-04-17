@@ -1,5 +1,11 @@
 <div class="slot{% if request.user.is_staff %} staffview{% endif %}" id="slot-{{ slot_name }}">
     {% if request.user.is_staff %}
+        <style type="text/css">
+            #slot-{{ slot_name }} .staff {
+                background: #{{ color.background }};
+                color: #{{ color.contrast }};
+            }
+        </style>
         <div class="staff staff-top">
             <h2>{{ slot_name }} <a href="#" class="add-portlet" title="Add Portlet">+Add</a></h2>
         </div>
