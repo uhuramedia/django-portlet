@@ -128,7 +128,18 @@ class PortletAssignment(models.Model):
         if conflict:
             pa.position = old_position
             pa.save()
+        PortletAssignment.clean_order(self.path, self.slot)
             
+    @staticmethod
+    def clean_order(path=path, slot=slot):
+        assignments = PortletAssignment.objects.filter(path=path, slot=slot).\
+                          order_by('-prohibit', 'position', '-path')
+        i = 0
+        for assignment in assignments:
+            assignment.position = i
+            assignment.save()
+            i += 1
+
     @staticmethod
     def move_path(old, new, keep_old=False):
         assignments = PortletAssignment.objects.filter(path__startswith=old)
