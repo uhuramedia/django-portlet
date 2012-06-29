@@ -112,22 +112,22 @@ class PortletAssignment(models.Model):
         # we want is already taken, we swap
         desired_position = self.position+delta
         if desired_position < 0:
-            return
+            desired_position = 0
         old_position = self.position
         conflict = False
-        try:
-            pa = PortletAssignment.objects.get(path=self.path, slot=self.slot,
-                                               position=desired_position)
+        pa = PortletAssignment.objects.filter(path=self.path, slot=self.slot,
+                                              position=desired_position)
+        if pa.count() > 0:
             conflict = True
-            pa.position = 444
-            pa.save()
-        except PortletAssignment.DoesNotExist:
-            pass
+            for p in pa:
+                p.position = 444
+                p.save()
         self.position = desired_position
         self.save()
         if conflict:
-            pa.position = old_position
-            pa.save()
+            for p in pa:
+                p.position = old_position
+                p.save()
         PortletAssignment.clean_order(self.path, self.slot)
             
     @staticmethod
