@@ -100,6 +100,11 @@ class PortletAssignment(models.Model):
     
     def __unicode__(self):
         return u"[%s] %s (%s) @ %s" % (self.portlet, self.slot, self.position, self.path)
+
+    def save(self, *args, **kwargs):
+        if self.pk is None and self.position == 0:
+            self.position = PortletAssignment.objects.filter(path=self.path, slot=self.slot).count()
+        super(PortletAssignment, self).save(*args, **kwargs)
     
     def move_up(self):
         return self.move(-1)
@@ -186,6 +191,14 @@ class PlainTextPortlet(Portlet):
     class Meta:
         verbose_name = _('Text Portlet')
         verbose_name_plural = _('Text Portlets')
+
+
+class SnippetPortlet(Portlet):
+    filename = models.CharField(max_length=255, unique=True)
+
+    @property
+    def template(self):
+        return "portlet/snippet/%s" % self.filename
 
 
 class ImagePortlet(Portlet):
