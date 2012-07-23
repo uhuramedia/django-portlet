@@ -5,19 +5,19 @@
         <li class="dim">{{ portlet.assignment.language|default:"global" }}</li>
         <li class="handle"><strong>{{ portlet.title }}</strong></li>
         <li class="handle dim">{{ portlet.portlet_type }}</li>
-        {% if portlet.prohibited %}<li>prohibited here</li>{% endif %}
+        {% if portlet.prohibited %}<li>{% trans "prohibited here" %}</li>{% endif %}
         {% if portlet.assignment.inherit %}
-            <li>[origin is {{ portlet.assignment.path }}]</li>
+            <li>[{% trans "origin is" %} {{ portlet.assignment.path }}]</li>
         {% endif %}
     </ul>
     <ul class="staff">
         {% if portlet.assignment.inherit %}
-            <li><a href="#" class="delete-here">Block here</a></li>
-            <li><a href="#" class="delete-here-inherit">Block here and from all sub-pages</a></li>
+            <li><a href="#" class="delete-here">{% trans "Block here" %}</a></li>
+            <li><a href="#" class="delete-here-inherit">{% trans "Block here and from all sub-pages" %}</a></li>
         {% endif %}
-        <li><a href="#" class="inherit" title="Inherit this to sub-pages">{{ portlet.assignment.inherit|yesno:"inherited,not inherited" }}</a></li>
-        <li><a href="#" class="delete">Delete</a></li>
-        <li><a href="{{ portlet.get_edit_link }}?_popup=1" class="edit popuplink">Edit</a></li>
+        <li><a href="#" class="inherit" title="{% trans "Inherit this to sub-pages" %}">{{ portlet.assignment.inherit|yesno:_("inherited,not inherited") }}</a></li>
+        <li><a href="#" class="delete">{% trans "Delete" %}</a></li>
+        <li><a href="{{ portlet.get_edit_link }}?_popup=1" class="edit popuplink">{% trans "Edit" %}</a></li>
     </ul>
 {% endif %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -39,8 +39,10 @@
             {% endblock %}
         </div>
     {% endif %}
+    {% block portlet_content_base %}
     <div class="content">
         {% block content %}{% endblock %}
     </div>
+    {% endblock %}
     {% endblock %}
 {% endspaceless %}{% endcache %}
