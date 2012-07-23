@@ -1,0 +1,135 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-13 16:09+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:14
+msgid "Title"
+msgstr "Titel"
+
+#: models.py:15
+msgid "Displayed title"
+msgstr "Anzeigetitel"
+
+#: models.py:16
+msgid "Displayed title link"
+msgstr "Link für Anzeigetitel"
+
+#: models.py:72
+msgid "Portlet"
+msgstr "Portlet"
+
+#: models.py:73
+msgid "Portlets"
+msgstr "Porlets"
+
+#: models.py:92
+msgid "Path"
+msgstr "Pfad"
+
+#: models.py:93
+msgid "Inherit"
+msgstr "Vererben"
+
+#: models.py:93
+msgid "Inherits this portlet to all sub-paths"
+msgstr "Auf Unterseiten vererben"
+
+#: models.py:94
+msgid "Slot"
+msgstr "Slot"
+
+#: models.py:95
+msgid "Position"
+msgstr "Position"
+
+#: models.py:96
+msgid "Prohibit"
+msgstr "Blockiert"
+
+#: models.py:96
+msgid "Blocks this portlet"
+msgstr "Hier blockieren"
+
+#: models.py:97
+msgid "Language"
+msgstr "Sprache"
+
+#: models.py:156
+msgid "Portlet Assignment"
+msgstr "Portlet-Zuweisung"
+
+#: models.py:157
+msgid "Portlet Assignments"
+msgstr "Portlet-Zuweisungen"
+
+#: models.py:167
+msgid "HTML Portlet"
+msgstr "HTML-Portlet"
+
+#: models.py:168
+msgid "HTML Portlets"
+msgstr "HTML-Portlets"
+
+#: models.py:176
+msgid "Text Portlet"
+msgstr "Textportlet"
+
+#: models.py:177
+msgid "Text Portlets"
+msgstr "Textportlets"
+
+#: templates/portlet/base.html:8
+msgid "prohibited here"
+msgstr "hier unterbunden"
+
+#: templates/portlet/base.html:10
+msgid "origin is"
+msgstr "Quelle is"
+
+#: templates/portlet/base.html:15
+msgid "Block here"
+msgstr "Hier blockieren"
+
+#: templates/portlet/base.html:16
+msgid "Block here and from all sub-pages"
+msgstr "Hier+Unterseiten blockieren"
+
+#: templates/portlet/base.html:18
+msgid "Inherit this to sub-pages"
+msgstr "Auf Unterseiten vererben"
+
+#: templates/portlet/base.html:18
+msgid "inherited,not inherited"
+msgstr "vererbt,nicht vererbt"
+
+#: templates/portlet/base.html:19
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/portlet/base.html:20
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: templates/portlet/slot.html:11 templates/portlet/slot.html.py:29
+msgid "Add Portlet"
+msgstr "Portlet hinzufügen"
+
+#: templates/portlet/slot.html:11 templates/portlet/slot.html.py:29
+msgid "Add"
+msgstr "Hinzufügen"
