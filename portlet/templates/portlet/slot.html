@@ -6,6 +6,13 @@
                 background: #{{ color.background }};
                 color: #{{ color.contrast }};
             }
+            #slot-{{ slot_name }} .staff a:link,
+            #slot-{{ slot_name }} .staff a:visited,
+            #slot-{{ slot_name }} .staff a:hover,
+            #slot-{{ slot_name }} .staff a:active,
+            #slot-{{ slot_name }} .staff h2 {
+                color: #{{ color.contrast }};
+            }
         </style>
         <div class="staff staff-top">
             <h2>{{ slot_name }} <a href="#" class="add-portlet" title="{% trans "Add Portlet" %}">+{% trans "Add" %}</a></h2>

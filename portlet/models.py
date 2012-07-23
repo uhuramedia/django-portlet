@@ -100,6 +100,11 @@ class PortletAssignment(models.Model):
     
     def __unicode__(self):
         return u"[%s] %s (%s) @ %s" % (self.portlet, self.slot, self.position, self.path)
+
+    def save(self, *args, **kwargs):
+        if self.pk is None and self.position == 0:
+            self.position = PortletAssignment.objects.filter(path=self.path, slot=self.slot).count()
+        super(PortletAssignment, self).save(*args, **kwargs)
     
     def move_up(self):
         return self.move(-1)
@@ -112,23 +117,34 @@ class PortletAssignment(models.Model):
         # we want is already taken, we swap
         desired_position = self.position+delta
         if desired_position < 0:
-            return
+            desired_position = 0
         old_position = self.position
         conflict = False
-        try:
-            pa = PortletAssignment.objects.get(path=self.path, slot=self.slot,
-                                               position=desired_position)
+        pa = PortletAssignment.objects.filter(path=self.path, slot=self.slot,
+                                              position=desired_position)
+        if pa.count() > 0:
             conflict = True
-            pa.position = 444
-            pa.save()
-        except PortletAssignment.DoesNotExist:
-            pass
+            for p in pa:
+                p.position = 444
+                p.save()
         self.position = desired_position
         self.save()
         if conflict:
-            pa.position = old_position
-            pa.save()
+            for p in pa:
+                p.position = old_position
+                p.save()
+        PortletAssignment.clean_order(self.path, self.slot)
             
+    @staticmethod
+    def clean_order(path=path, slot=slot):
+        assignments = PortletAssignment.objects.filter(path=path, slot=slot).\
+                          order_by('-prohibit', 'position', '-path')
+        i = 0
+        for assignment in assignments:
+            assignment.position = i
+            assignment.save()
+            i += 1
+
     @staticmethod
     def move_path(old, new, keep_old=False):
         assignments = PortletAssignment.objects.filter(path__startswith=old)
@@ -175,6 +191,14 @@ class PlainTextPortlet(Portlet):
     class Meta:
         verbose_name = _('Text Portlet')
         verbose_name_plural = _('Text Portlets')
+
+
+class SnippetPortlet(Portlet):
+    filename = models.CharField(max_length=255, unique=True)
+
+    @property
+    def template(self):
+        return "portlet/snippet/%s" % self.filename
 
 
 class ImagePortlet(Portlet):

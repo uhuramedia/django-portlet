@@ -2,6 +2,7 @@ from django import template
 from django.utils import translation
 from portlet.models import PortletAssignment
 from hashlib import md5
+from colorsys import hsv_to_rgb
 
 register = template.Library()
 
@@ -29,19 +30,24 @@ def slot(context, slot_name, path_override=None, path_extra=None):
         portlet.assignment = a
         portlet.prohibited = portlet.pk in blocklist
         portlets.append(portlet)
-        
+
     hex = get_color(slot_name)
     color = {'background': hex, 'contrast': get_contrast_color(hex)}
 
     return {'portlets': portlets, 'slot_name': slot_name, 'request': request,
             'color': color}
 
-
 def get_color(name):
-    return md5((name).encode('latin1', 'replace')).hexdigest()[:6]
+    hexstring = md5((name).encode('latin1', 'replace')).hexdigest()[:2]
+    floatcolor = int("0x" + hexstring, 16) / 255.0
+    h = floatcolor # Select random green'ish hue from hue wheel
+    s = 0.6
+    v = 1
+    r, g, b = hsv_to_rgb(h, s, v)
+    return "".join([hex(int(x * 255)).replace("0x", "").rjust(2, "0") for x in (r, g, b)])
 
 def get_contrast_color(hexcolor):
     hexcolor = int("0x" + hexcolor, 16)
-    if hexcolor > 0xffffff / 2:
+    if hexcolor > 0xffffff / 1.5:
         return "000000"
     return "FFFFFF"

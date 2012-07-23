@@ -54,7 +54,7 @@ def add(request):
         pk = request.GET.get('pk')
         slot = request.GET.get('slot')
         lang = translation.get_language()
-        a = PortletAssignment(path=path, portlet_id=pk, slot=slot, 
+        a = PortletAssignment(path=path, portlet_id=pk, slot=slot,
                               language=lang)
         a.save()
         return HttpResponseRedirect(path)
@@ -65,7 +65,7 @@ def add(request):
             if not data.has_key(p.portlet_type):
                 data[p.portlet_type] = []
             data[p.portlet_type].append({'title': p.title, 'pk': p.pk})
-        data = [ {'category': k, 'portlets': v} for k,v in data.items()]
+        data = [ {'category': k, 'portlets': v} for k, v in data.items()]
         data.sort(lambda x, y: cmp(len(y['portlets']), len(x['portlets'])))
         return HttpResponse(simplejson.dumps(data))
 
