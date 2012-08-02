@@ -19,13 +19,14 @@
 .slot .staff h2 {
  margin: 0 5px;
  font-size: 16px;
+ background: none!important;
 }
 .slot .staff h2 a {
     text-decoration: underline;
     font-size: 80%;
 }
 .slot .staff .dim {
-    color: #666;
+    opacity: 0.6;
 }
 .slot .staff li {
  float: left;
@@ -71,6 +72,7 @@
     height: 20px;
     width: 200px;
     font-family: "Lucida Grande", verdana, sans-serif;
+    color: #fff;
 }
 #portletStaffOverlay { 
     font-family: "Lucida Grande", verdana, sans-serif;
@@ -83,6 +85,9 @@
     color: #fff;
     z-index: 9000;
     border-radius: 0 0 10px 0;
+}
+#portletStaffOverlay a {
+    color: #fff;
 }
 #portletcategories {
     list-style-type: none;

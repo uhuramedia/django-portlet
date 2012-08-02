@@ -1,6 +1,6 @@
 from django.contrib import admin
 from portlet.models import HTMLPortlet, Portlet, PortletAssignment, \
-    PlainTextPortlet, ImagePortlet, FlashPortlet
+    PlainTextPortlet, ImagePortlet, FlashPortlet, SnippetPortlet
 
 class PortletAssignmentInline(admin.TabularInline):
     extra = 0
@@ -36,3 +36,5 @@ class ImagePortletAdmin(PortletAdmin):
 admin.site.register(ImagePortlet, ImagePortletAdmin)
 
 admin.site.register(FlashPortlet, PortletAdmin)
+
+admin.site.register(SnippetPortlet, PortletAdmin)

@@ -11,9 +11,9 @@ from django.conf import settings
 
 class Portlet(models.Model):
     template = 'portlet/base.html'
-    title = models.CharField(max_length=100)
-    display_title = models.CharField(max_length=255, blank=True, default="")
-    display_title_link = models.CharField(max_length=255, blank=True, default="")
+    title = models.CharField(_("Title"), max_length=100)
+    display_title = models.CharField(_("Displayed title"), max_length=255, blank=True, default="")
+    display_title_link = models.CharField(_("Displayed title link"), max_length=255, blank=True, default="")
     portlet_type = models.SlugField(editable=False)
     created = models.DateTimeField(default=datetime.datetime.now, editable=False)
     modified = models.DateTimeField(auto_now=True, default=datetime.datetime.now, editable=False)
@@ -89,17 +89,22 @@ def split_path(path):
 
 class PortletAssignment(models.Model):
     portlet = models.ForeignKey(Portlet)
-    path = models.CharField(max_length=200)
-    inherit = models.BooleanField(default=False, help_text="Inherits this portlet to all sub-paths")
-    slot = models.SlugField()
-    position = models.PositiveIntegerField(default=0)
-    prohibit = models.BooleanField(default=False, help_text="Blocks this portlet")
-    language = models.CharField(max_length=5, db_index=True, blank=True,
+    path = models.CharField(_("Path"), max_length=200)
+    inherit = models.BooleanField(_("Inherit"), default=False, help_text=_("Inherits this portlet to all sub-paths"))
+    slot = models.SlugField(_("Slot"))
+    position = models.PositiveIntegerField(_("Position"), default=0)
+    prohibit = models.BooleanField(_("Prohibit"), default=False, help_text=_("Blocks this portlet"))
+    language = models.CharField(_("Language"), max_length=5, db_index=True, blank=True,
                                 choices=settings.LANGUAGES, 
                                 default=settings.LANGUAGES[0][0])
     
     def __unicode__(self):
         return u"[%s] %s (%s) @ %s" % (self.portlet, self.slot, self.position, self.path)
+
+    def save(self, *args, **kwargs):
+        if self.pk is None and self.position == 0:
+            self.position = PortletAssignment.objects.filter(path=self.path, slot=self.slot).count()
+        super(PortletAssignment, self).save(*args, **kwargs)
     
     def move_up(self):
         return self.move(-1)
@@ -186,6 +191,14 @@ class PlainTextPortlet(Portlet):
     class Meta:
         verbose_name = _('Text Portlet')
         verbose_name_plural = _('Text Portlets')
+
+
+class SnippetPortlet(Portlet):
+    filename = models.CharField(max_length=255, unique=True)
+
+    @property
+    def template(self):
+        return "portlet/snippet/%s" % self.filename
 
 
 class ImagePortlet(Portlet):

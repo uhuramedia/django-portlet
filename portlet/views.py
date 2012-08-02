@@ -7,6 +7,7 @@ from portlet.models import PortletAssignment, Portlet
 from django.shortcuts import get_object_or_404
 from django.utils import translation
 
+
 @user_passes_test(lambda u: u.is_staff)
 def inherit(request, pk):
     """ delete a portlet assignment """
@@ -17,6 +18,7 @@ def inherit(request, pk):
         return HttpResponse('')
     except Exception, e:
         return HttpResponse("Error: " + str(e))
+
 
 @user_passes_test(lambda u: u.is_staff)
 def delete(request, pk):
@@ -43,6 +45,7 @@ def delete(request, pk):
     except Exception, e:
         return HttpResponse("Error: " + str(e))
 
+
 @user_passes_test(lambda u: u.is_staff)
 @csrf_exempt
 def add(request):
@@ -51,7 +54,7 @@ def add(request):
         pk = request.GET.get('pk')
         slot = request.GET.get('slot')
         lang = translation.get_language()
-        a = PortletAssignment(path=path, portlet_id=pk, slot=slot, 
+        a = PortletAssignment(path=path, portlet_id=pk, slot=slot,
                               language=lang)
         a.save()
         return HttpResponseRedirect(path)
@@ -62,15 +65,33 @@ def add(request):
             if not data.has_key(p.portlet_type):
                 data[p.portlet_type] = []
             data[p.portlet_type].append({'title': p.title, 'pk': p.pk})
-        data = [ {'category': k, 'portlets': v} for k,v in data.items()]
+        data = [ {'category': k, 'portlets': v} for k, v in data.items()]
         data.sort(lambda x, y: cmp(len(y['portlets']), len(x['portlets'])))
         return HttpResponse(simplejson.dumps(data))
 
+
+@user_passes_test(lambda u: u.is_staff)
+@csrf_exempt
+def change(request):
+    if request.method == "POST":
+        content = request.POST.get("content", "")
+        element = request.POST.get("element", "")
+        pk = element.replace("portlet-content-", "")
+        p = Portlet.objects.get(pk=pk).get_object()
+        p.text = content
+        p.save()
+        print p, content
+        return HttpResponse("OK")
+    return HttpResponse("")
+
+@user_passes_test(lambda u: u.is_staff)
 def moveup(request, pk):
     assignment = get_object_or_404(PortletAssignment, pk=pk)
     assignment.move_up()
     return HttpResponse('')
 
+
+@user_passes_test(lambda u: u.is_staff)
 def movedown(request, pk):
     assignment = get_object_or_404(PortletAssignment, pk=pk)
     assignment.move_down()

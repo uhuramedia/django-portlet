@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="slot{% if request.user.is_staff %} staffview{% endif %}" id="slot-{{ slot_name }}">
     {% if request.user.is_staff %}
         <style type="text/css">
@@ -5,9 +6,16 @@
                 background: #{{ color.background }};
                 color: #{{ color.contrast }};
             }
+            #slot-{{ slot_name }} .staff a:link,
+            #slot-{{ slot_name }} .staff a:visited,
+            #slot-{{ slot_name }} .staff a:hover,
+            #slot-{{ slot_name }} .staff a:active,
+            #slot-{{ slot_name }} .staff h2 {
+                color: #{{ color.contrast }};
+            }
         </style>
         <div class="staff staff-top">
-            <h2>{{ slot_name }} <a href="#" class="add-portlet" title="Add Portlet">+Add</a></h2>
+            <h2>{{ slot_name }} <a href="#" class="add-portlet" title="{% trans "Add Portlet" %}">+{% trans "Add" %}</a></h2>
         </div>
     {% endif %}
     {% for portlet in portlets %}
@@ -25,7 +33,7 @@
     {% endfor %}
     {% if request.user.is_staff %}
         <div class="staff staff-bottom">
-            <h2>/slot <a href="#" class="add-portlet" title="Add Portlet">+Add</a></h2>
+            <h2>/slot <a href="#" class="add-portlet" title="{% trans "Add Portlet" %}">+{% trans "Add" %}</a></h2>
         </div>
     {% endif %}
 </div>
