@@ -8,6 +8,7 @@ from django.template.defaultfilters import slugify
 from django.core import urlresolvers
 from django.db.models.fields.related import SingleRelatedObjectDescriptor
 from django.conf import settings
+from django.utils import translation
 
 class Portlet(models.Model):
     template = 'portlet/base.html'
@@ -39,6 +40,18 @@ class Portlet(models.Model):
         t = loader.get_template(self.__template__)
         c = Context({'portlet': self, 'request': self.request})
         return t.render(c)
+
+    def vary_on(self):
+        """
+        Used in template cache tag.
+        Use variables on which the portlet content does vary.
+        ID and modification time (for cache busting!) are hardcoded in template
+
+        Override like this:
+            return (super(YOURPortletClass, self).vary_on() +
+                   [self.request.blah, self.blah])
+        """
+        return [translation.get_language()]
 
     def get_object(self):
         return getattr(self, self.portlet_type.lower())
@@ -96,7 +109,7 @@ class PortletAssignment(models.Model):
     prohibit = models.BooleanField(_("Prohibit"), default=False, help_text=_("Blocks this portlet"))
     language = models.CharField(_("Language"), max_length=5, db_index=True, blank=True,
                                 choices=settings.LANGUAGES, 
-                                default=settings.LANGUAGES[0][0])
+                                default=None)# settings.LANGUAGES[0][0])
     
     def __unicode__(self):
         return u"[%s] %s (%s) @ %s" % (self.portlet, self.slot, self.position, self.path)

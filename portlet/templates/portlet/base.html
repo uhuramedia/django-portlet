@@ -1,6 +1,7 @@
 {% load cache i18n %}
 {% if request.user.is_staff %}
     <ul class="staff">
+        <!-- cache vary is {{ portlet.vary_on }} -->
         <li class="dim">{{ portlet.assignment.position }}</li>
         <li class="dim">{{ portlet.assignment.language|default:"global" }}</li>
         <li class="handle"><strong>{{ portlet.title }}</strong></li>
@@ -20,8 +21,7 @@
         <li><a href="{{ portlet.get_edit_link }}?_popup=1" class="edit popuplink">{% trans "Edit" %}</a></li>
     </ul>
 {% endif %}
-{% get_current_language as LANGUAGE_CODE %}
-{% cache 900 portlet_fragment portlet.pk portlet.modified.isoformat LANGUAGE_CODE request.user.is_authenticated %}{% spaceless %}
+{% cache 900 portlet_fragment portlet.pk portlet.modified.isoformat portlet.vary_on %}{% spaceless %}
     {% block portlet_base %}
     {% if portlet.display_title %}
         <div class="header">
