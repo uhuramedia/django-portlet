@@ -1,19 +1,20 @@
+from colorsys import hsv_to_rgb
 from django import template
 from django.utils import translation
-from portlet.models import PortletAssignment
 from hashlib import md5
-from colorsys import hsv_to_rgb
+from portlet.models import PortletAssignment
 
 register = template.Library()
 
 @register.inclusion_tag('portlet/slot.html', takes_context=True)
-def slot(context, slot_name, path_override=None, path_extra=None):
+def slot(context, slot_name, path_override=None, extra=None):
+    extra = unicode(extra)
     request = context.get('request')
     lang = translation.get_language()
+    if extra:
+        slot_name = "-".join((slot_name, extra))
     if path_override:
         path = path_override
-        if path_extra:
-            path = path + path_extra
     else:
         path = request.path
 

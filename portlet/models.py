@@ -109,7 +109,7 @@ class PortletAssignment(models.Model):
     prohibit = models.BooleanField(_("Prohibit"), default=False, help_text=_("Blocks this portlet"))
     language = models.CharField(_("Language"), max_length=5, db_index=True, blank=True,
                                 choices=settings.LANGUAGES, 
-                                default=None)# settings.LANGUAGES[0][0])
+                                default="")# settings.LANGUAGES[0][0])
     
     def __unicode__(self):
         return u"[%s] %s (%s) @ %s" % (self.portlet, self.slot, self.position, self.path)

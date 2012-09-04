@@ -53,9 +53,8 @@ def add(request):
         path = request.GET.get('path')
         pk = request.GET.get('pk')
         slot = request.GET.get('slot')
-        lang = translation.get_language()
-        a = PortletAssignment(path=path, portlet_id=pk, slot=slot,
-                              language=lang)
+        #lang = translation.get_language()
+        a = PortletAssignment(path=path, portlet_id=pk, slot=slot)
         a.save()
         return HttpResponseRedirect(path)
     else:
