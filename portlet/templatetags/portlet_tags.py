@@ -11,7 +11,7 @@ def slot(context, slot_name, path_override=None, extra=None):
     extra = unicode(extra)
     request = context.get('request')
     lang = translation.get_language()
-    if extra:
+    if extra is not None:
         slot_name = "-".join((slot_name, extra))
     if path_override:
         path = path_override
