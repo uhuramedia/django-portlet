@@ -8,11 +8,10 @@ register = template.Library()
 
 @register.inclusion_tag('portlet/slot.html', takes_context=True)
 def slot(context, slot_name, path_override=None, extra=None):
-    extra = unicode(extra)
     request = context.get('request')
     lang = translation.get_language()
     if extra and extra != "":
-        slot_name = "-".join((slot_name, extra))
+        slot_name = "-".join((slot_name, str(extra)))
     if path_override:
         path = path_override
     else:
