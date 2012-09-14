@@ -10,7 +10,7 @@ register = template.Library()
 def slot(context, slot_name, path_override=None, extra=None):
     request = context.get('request')
     lang = translation.get_language()
-    if extra and extra != "":
+    if extra and str(extra) != "":
         slot_name = "-".join((slot_name, str(extra)))
     if path_override:
         path = path_override
