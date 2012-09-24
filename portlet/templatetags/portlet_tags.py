@@ -8,6 +8,8 @@ register = template.Library()
 
 @register.inclusion_tag('portlet/slot.html', takes_context=True)
 def slot(context, slot_name, path_override=None, extra=None):
+    if slot_name == "":
+        raise TemplateSyntaxError("Slot name must be non-empty string")
     request = context.get('request')
     lang = translation.get_language()
     if extra and str(extra) != "":
