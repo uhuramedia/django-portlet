@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-13 16:09+0200\n"
+"POT-Creation-Date: 2012-09-26 16:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,118 +18,122 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: models.py:14
+#: models.py:15
 msgid "Title"
 msgstr "Titel"
 
-#: models.py:15
+#: models.py:16
 msgid "Displayed title"
 msgstr "Anzeigetitel"
 
-#: models.py:16
+#: models.py:17
 msgid "Displayed title link"
 msgstr "Link für Anzeigetitel"
 
-#: models.py:72
+#: models.py:85
 msgid "Portlet"
 msgstr "Portlet"
 
-#: models.py:73
+#: models.py:86
 msgid "Portlets"
 msgstr "Porlets"
 
-#: models.py:92
+#: models.py:105
 msgid "Path"
 msgstr "Pfad"
 
-#: models.py:93
+#: models.py:106
 msgid "Inherit"
 msgstr "Vererben"
 
-#: models.py:93
+#: models.py:106
 msgid "Inherits this portlet to all sub-paths"
 msgstr "Auf Unterseiten vererben"
 
-#: models.py:94
+#: models.py:107
 msgid "Slot"
 msgstr "Slot"
 
-#: models.py:95
+#: models.py:108
 msgid "Position"
 msgstr "Position"
 
-#: models.py:96
+#: models.py:109
 msgid "Prohibit"
 msgstr "Blockiert"
 
-#: models.py:96
+#: models.py:109
 msgid "Blocks this portlet"
 msgstr "Hier blockieren"
 
-#: models.py:97
+#: models.py:110 templates/portlet/base.html:6
 msgid "Language"
 msgstr "Sprache"
 
-#: models.py:156
+#: models.py:185
 msgid "Portlet Assignment"
 msgstr "Portlet-Zuweisung"
 
-#: models.py:157
+#: models.py:186
 msgid "Portlet Assignments"
 msgstr "Portlet-Zuweisungen"
 
-#: models.py:167
+#: models.py:196
 msgid "HTML Portlet"
 msgstr "HTML-Portlet"
 
-#: models.py:168
+#: models.py:197
 msgid "HTML Portlets"
 msgstr "HTML-Portlets"
 
-#: models.py:176
+#: models.py:205
 msgid "Text Portlet"
 msgstr "Textportlet"
 
-#: models.py:177
+#: models.py:206
 msgid "Text Portlets"
 msgstr "Textportlets"
 
 #: templates/portlet/base.html:8
+msgid "Type"
+msgstr "Typ"
+
+#: templates/portlet/base.html:9
 msgid "prohibited here"
-msgstr "hier unterbunden"
+msgstr "Hier unterbunden"
 
-#: templates/portlet/base.html:10
+#: templates/portlet/base.html:11
 msgid "origin is"
-msgstr "Quelle is"
+msgstr "Quelle ist"
 
-#: templates/portlet/base.html:15
+#: templates/portlet/base.html:16
 msgid "Block here"
 msgstr "Hier blockieren"
 
-#: templates/portlet/base.html:16
+#: templates/portlet/base.html:17
 msgid "Block here and from all sub-pages"
 msgstr "Hier+Unterseiten blockieren"
 
-#: templates/portlet/base.html:18
+#: templates/portlet/base.html:19
 msgid "Inherit this to sub-pages"
 msgstr "Auf Unterseiten vererben"
 
-#: templates/portlet/base.html:18
-msgid "inherited,not inherited"
-msgstr "vererbt,nicht vererbt"
-
 #: templates/portlet/base.html:19
+msgid "inherited,not inherited"
+msgstr "Vererbt,Nicht vererbt"
+
+#: templates/portlet/base.html:20
 msgid "Delete"
 msgstr "Löschen"
 
-#: templates/portlet/base.html:20
+#: templates/portlet/base.html:21
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: templates/portlet/slot.html:11 templates/portlet/slot.html.py:29
+#: templates/portlet/slot.html:5 templates/portlet/slot.html.py:23
 msgid "Add Portlet"
 msgstr "Portlet hinzufügen"
 
-#: templates/portlet/slot.html:11 templates/portlet/slot.html.py:29
+#: templates/portlet/slot.html:5 templates/portlet/slot.html.py:23
 msgid "Add"
 msgstr "Hinzufügen"

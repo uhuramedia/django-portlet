@@ -3,9 +3,9 @@
     <ul class="staff">
         <!-- cache vary is {{ portlet.vary_on }} -->
         <li class="dim">{{ portlet.assignment.position }}</li>
-        <li class="dim">{{ portlet.assignment.language|default:"global" }}</li>
+        <li class="dim">{% trans "Language" %}: {{ portlet.assignment.language|default:"global" }}</li>
         <li class="handle"><strong>{{ portlet.title }}</strong></li>
-        <li class="handle dim">{{ portlet.portlet_type }}</li>
+        <li class="handle dim">{% trans "Type" %}: {{ portlet.portlet_type }}</li>
         {% if portlet.prohibited %}<li>{% trans "prohibited here" %}</li>{% endif %}
         {% if portlet.assignment.inherit %}
             <li>[{% trans "origin is" %} {{ portlet.assignment.path }}]</li>
