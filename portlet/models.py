@@ -16,8 +16,8 @@ class Portlet(models.Model):
     display_title = models.CharField(_("Displayed title"), max_length=255, blank=True, default="")
     display_title_link = models.CharField(_("Displayed title link"), max_length=255, blank=True, default="")
     portlet_type = models.SlugField(editable=False)
-    created = models.DateTimeField(default=datetime.datetime.now, editable=False)
-    modified = models.DateTimeField(auto_now=True, default=datetime.datetime.now, editable=False)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     def slug(self, lang=None):
         return slugify(self.title)

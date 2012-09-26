@@ -5,18 +5,19 @@
     display: none;
 }
 .slot .staff {
- background-color: #fff;
+ background-color: #eee;
  box-shadow: inset 0 0 5px #ddd;
  border: 1px solid #ccc;
  font-size: 11px;
- font-family: "Lucida Grande", verdana, sans-serif;
+ font-family: "Lucida Grande", verdana, sans-serif!important;
  padding: 1px;
  list-style-type: none;
  overflow: auto;
  margin: 0 0 1px 0;
- color: #000;
+ color: #000!important;
 }
 .slot .staff h2 {
+ color: #000!important;
  margin: 0 5px;
  font-size: 16px;
  background: none!important;
@@ -43,10 +44,10 @@
     color: #fff;
 }
 .slot .staff-top {
-    border-radius: 7px 7px 0 0;
+    border-radius: 14px 14px 0 0;
 }
 .slot .staff-bottom {
-    border-radius: 0 0 7px 7px;
+    border-radius: 0 0 14px 14px;
     clear: both;
 }
 .slot .prohibited .staff {
@@ -60,7 +61,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #02779E;
+    background-color: #eee;
     display: none;
     color: #fff;
     z-index: 10000;
@@ -72,7 +73,7 @@
     height: 20px;
     width: 200px;
     font-family: "Lucida Grande", verdana, sans-serif;
-    color: #fff;
+    color: #000!important;
 }
 #portletStaffOverlay { 
     font-family: "Lucida Grande", verdana, sans-serif;
@@ -80,14 +81,14 @@
     top: 40px;
     left: 0;
     padding: 0;
-    background-color: #111;
+    background-color: #eee;
     display: none;
-    color: #fff;
+    color: #000;
     z-index: 9000;
     border-radius: 0 0 10px 0;
 }
 #portletStaffOverlay a {
-    color: #fff;
+    color: #000!important;
 }
 #portletcategories {
     list-style-type: none;
@@ -98,34 +99,33 @@
 #portletcategories > li {
     font-weight: normal;
     margin: 0;
-    font-size: 11px;
+    font-size: 13px;
     clear:both;
     width: 220px;
 }
 #portletcategories li a {
     display: block;
-    padding: 2px 4px 1px;
+    padding: 5px 4px 4px;
 }
 #portletcategories > li > a {
     padding: 3px 10px 2px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #ccc;
 }
 #portletcategories li.active {
-    background: #02779E;
+    background: #ddd;
 }
 #portletcategories li a:hover {
-    background: #02779E;
+    background: #ddd;
 }
 #portletcategories ul {
     list-style-type: circle;
     position: absolute;
     left: 220px;
-    margin: -23px 0 0;
+    margin: -26px 0 0;
     padding: 0;
     display:none;
-    font-size: 11px;
-    background: #111;
-    border-radius: 0 10px 10px 0;
+    font-size: 13px;
+    background: #eee;
     width: 750px;
 }
 #portletcategories ul li {

@@ -92,7 +92,7 @@ $(function() {
         win.focus();
         return false;
     });
-    var overlay = $('<div id="portletStaffToggleOverlay"><a href="#" id="portletStaffViewToggle">Toggle Editing</a></div>');
+    var overlay = $('<div id="portletStaffToggleOverlay"><a href="#" id="portletStaffViewToggle">Editieren</a></div>');
     $('body').append(overlay);
     $("#portletStaffToggleOverlay").show();
     if(localStorage && localStorage.getItem('portletStaffToggleOverlay') == 1) {
@@ -128,7 +128,7 @@ $(function() {
 	                }
 	                html += '</ul></li>';
 	            }
-	            html += '</ul><a href="#" id="closePortletStaffOverlay">Close</a>';
+	            html += '</ul><a href="#" id="closePortletStaffOverlay">Schließen</a>';
 	            $(html).appendTo(overlay);
 	            $("#closePortletStaffOverlay").click(function() {
 	            	$(this).parent().fadeOut().delay(400).remove();
