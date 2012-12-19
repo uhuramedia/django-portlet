@@ -55,18 +55,18 @@ class Portlet(models.Model):
 
     def get_object(self):
         return getattr(self, self.portlet_type.lower())
-    
+
     def get_edit_link(self):
         # reverse admin url to get link to specific object
         return urlresolvers.reverse('admin:%s_%s_change' % (self._meta.app_label,
                                                             self.portlet_type.lower()),
                                     args=(self.pk,))
-        
+
     def is_assigned(self):
         return self.portletassignment_set.all().count() > 0
-    
+
     is_assigned.boolean = True
-    
+
     @staticmethod
     def select_subclasses(*subclasses):
         if not subclasses:
@@ -98,7 +98,7 @@ def split_path(path):
         listpath.pop()
     result.append("/")
     return result
-        
+
 
 class PortletAssignment(models.Model):
     portlet = models.ForeignKey(Portlet)
@@ -108,9 +108,9 @@ class PortletAssignment(models.Model):
     position = models.PositiveIntegerField(_("Position"), default=0)
     prohibit = models.BooleanField(_("Prohibit"), default=False, help_text=_("Blocks this portlet"))
     language = models.CharField(_("Language"), max_length=5, db_index=True, blank=True,
-                                choices=settings.LANGUAGES, 
+                                choices=settings.LANGUAGES,
                                 default="")# settings.LANGUAGES[0][0])
-    
+
     def __unicode__(self):
         return u"[%s] %s (%s) @ %s" % (self.portlet, self.slot, self.position, self.path)
 
@@ -118,13 +118,13 @@ class PortletAssignment(models.Model):
         if self.pk is None and self.position == 0:
             self.position = PortletAssignment.objects.filter(path=self.path, slot=self.slot).count()
         super(PortletAssignment, self).save(*args, **kwargs)
-    
+
     def move_up(self):
         return self.move(-1)
-    
+
     def move_down(self):
         return self.move(1)
-    
+
     def move(self, delta):
         # there is always just one portlet at one position, so if the position
         # we want is already taken, we swap
@@ -147,7 +147,7 @@ class PortletAssignment(models.Model):
                 p.position = old_position
                 p.save()
         PortletAssignment.clean_order(self.path, self.slot)
-            
+
     @staticmethod
     def clean_order(path=path, slot=slot):
         assignments = PortletAssignment.objects.filter(path=path, slot=slot).\
@@ -166,7 +166,7 @@ class PortletAssignment(models.Model):
             if keep_old:
                 assignment.pk = None
             assignment.save()
-    
+
     @staticmethod
     def get_for_path(path, slot, language):
         """ get all assigned portlets for path"""
@@ -228,3 +228,14 @@ class FlashPortlet(Portlet):
     width = models.IntegerField(default=300)
     height = models.IntegerField(default=200)
     flash_vars = models.CharField(help_text=u"clickTAG=http://www.example.com/", max_length=255, blank=True, default="")
+
+
+class DownloadPortlet(Portlet):
+    template = 'portlet/download.html'
+    file = models.FileField(_('Datei'), upload_to='portletdownload/', blank=True)
+    image = models.ImageField(_('Vorschau Bild'), upload_to="portletdownload")
+    text = models.TextField()
+    alt_text = models.CharField(max_length=255, blank=True)
+    link = models.CharField(max_length=255, blank=True)
+    classes = models.CharField(max_length=255, blank=True)
+

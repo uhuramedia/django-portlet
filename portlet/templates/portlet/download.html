@@ -1,0 +1,23 @@
+{% extends 'portlet/base.html' %}
+{% block content %}
+<div class="sidebar-box black-box{% if portlet.classes %} {{ portlet.classes }}{% endif %}">
+    <h1>DOWNLOAD</h1>
+    <div class="row-fluid">
+        <div class="span6">
+            <img src="{{ portlet.image.url }}" alt="{{ portlet.alt_text }}" />
+        </div>
+        <div class="span6">
+            <p>
+                {{ portlet.text }}
+            </p>
+        </div>
+    </div>
+
+    {% if portlet.file %}
+    <br />
+    <p class="pagination-centered">
+        <a class="btn" href="{{ portlet.file }}">Download</a>
+    </p>
+    {% endif %}
+</div>
+{% endblock %}
