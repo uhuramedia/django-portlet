@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-26 16:53+0200\n"
+"POT-Creation-Date: 2012-12-20 10:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,20 +79,28 @@ msgid "Portlet Assignments"
 msgstr "Portlet-Zuweisungen"
 
 #: models.py:196
-msgid "HTML Portlet"
+msgid "HTML portlet"
 msgstr "HTML-Portlet"
 
 #: models.py:197
-msgid "HTML Portlets"
+msgid "HTML portlets"
 msgstr "HTML-Portlets"
 
 #: models.py:205
-msgid "Text Portlet"
-msgstr "Textportlet"
+msgid "Plain text portlet"
+msgstr "Nur-Text-Portlet"
 
 #: models.py:206
-msgid "Text Portlets"
-msgstr "Textportlets"
+msgid "Plain text portlets"
+msgstr "Nur-Text-Portlets"
+
+#: models.py:235
+msgid "Datei"
+msgstr ""
+
+#: models.py:236
+msgid "Vorschau Bild"
+msgstr ""
 
 #: templates/portlet/base.html:8
 msgid "Type"

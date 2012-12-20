@@ -193,8 +193,8 @@ class HTMLPortlet(Portlet):
     text = models.TextField()
 
     class Meta:
-        verbose_name = _('HTML Portlet')
-        verbose_name_plural = _('HTML Portlets')
+        verbose_name = _('HTML portlet')
+        verbose_name_plural = _('HTML portlets')
 
 
 class PlainTextPortlet(Portlet):
@@ -202,8 +202,8 @@ class PlainTextPortlet(Portlet):
     text = models.TextField()
 
     class Meta:
-        verbose_name = _('Text Portlet')
-        verbose_name_plural = _('Text Portlets')
+        verbose_name = _('Plain text portlet')
+        verbose_name_plural = _('Plain text portlets')
 
 
 class SnippetPortlet(Portlet):
