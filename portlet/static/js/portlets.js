@@ -22,15 +22,14 @@ $(function() {
             ui.item.data('start_pos', start_pos);
         },
         update: function(event, ui) {
-            if(ui.sender) {
-                console.log($(ui.sender).attr("id").replace("slot-", ""));
-            };
-            var start_pos = ui.item.data('start_pos');
-            var index = ui.item.index();
-            var portlet = ui.item;
-            var pId = getPortletId(portlet);
-            var slot = $(this).closest('.slot').attr("id").replace("slot-", "");
-            $.get('/portlet/move/' + pId + '/' + (index-start_pos) + '/' + slot + '/');
+            if (this === ui.item.parent()[0]) {
+                var start_pos = ui.item.data('start_pos');
+                var index = ui.item.index();
+                var portlet = ui.item;
+                var pId = getPortletId(portlet);
+                var slot = $(this).closest('.slot').attr("id").replace("slot-", "");
+                $.get('/portlet/move/' + pId + '/' + (index-start_pos) + '/' + slot + '/');
+            }
         },
     });
 	$('.portlet .inherit').click(function() {
