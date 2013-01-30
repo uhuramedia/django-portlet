@@ -58,6 +58,12 @@
 .slot .prohibited {
  opacity: 0.5;
 }
+.slot .ui-sortable-placeholder {
+    border: 1px dotted #aaa;
+    border-radius: 10px;
+    visibility: visible !important;
+    height: 100px !important;
+}
 #portletStaffToggleOverlay {
     position: fixed;
     top: 0;

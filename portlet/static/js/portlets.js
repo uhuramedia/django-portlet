@@ -16,22 +16,22 @@ $(function() {
     $(".staffview").sortable({
         handle: ".handle",
         items: ".portlet",
+        connectWith: ".slot",
         start: function(event, ui) {
             var start_pos = ui.item.index();
             ui.item.data('start_pos', start_pos);
         },
-        change: function(event, ui) {
+        update: function(event, ui) {
+            if(ui.sender) {
+                console.log($(ui.sender).attr("id").replace("slot-", ""));
+            };
             var start_pos = ui.item.data('start_pos');
-            var index = ui.placeholder.index();
+            var index = ui.item.index();
             var portlet = ui.item;
             var pId = getPortletId(portlet);
-            if (index > start_pos) {
-                $.get('/portlet/movedown/' + pId + '/');
-            }
-            else if (index < start_pos) {
-                $.get('/portlet/moveup/' + pId + '/');
-            }
-        }
+            var slot = $(this).closest('.slot').attr("id").replace("slot-", "");
+            $.get('/portlet/move/' + pId + '/' + (index-start_pos) + '/' + slot + '/');
+        },
     });
 	$('.portlet .inherit').click(function() {
 		var portlet = $(this).parents(".portlet");

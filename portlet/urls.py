@@ -6,4 +6,5 @@ urlpatterns = patterns('portlet.views',
     (r'^add/$', 'add'),
     (r'^moveup/(\d+)/$', 'moveup'),
     (r'^movedown/(\d+)/$', 'movedown'),
+    (r'^move/(\d+)/(-?\d+)/(.+)/$', 'move'),
 )

@@ -87,11 +87,19 @@ def change(request):
 def moveup(request, pk):
     assignment = get_object_or_404(PortletAssignment, pk=pk)
     assignment.move_up()
-    return HttpResponse('')
+    return HttpResponse(assignment.position)
 
 
 @user_passes_test(lambda u: u.is_staff)
 def movedown(request, pk):
     assignment = get_object_or_404(PortletAssignment, pk=pk)
     assignment.move_down()
-    return HttpResponse('')
+    return HttpResponse(assignment.position)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def move(request, pk, delta, slot):
+    assignment = get_object_or_404(PortletAssignment, pk=pk)
+    assignment.slot = slot
+    assignment.move(int(delta))
+    return HttpResponse(assignment.position)
