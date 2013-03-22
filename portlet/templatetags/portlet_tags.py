@@ -10,6 +10,9 @@ register = template.Library()
 def slot(context, slot_name, path_override=None, extra=None):
     if slot_name == "":
         raise TemplateSyntaxError("Slot name must be non-empty string")
+    slot_class = ""
+    if ":" in slot_name:
+        slot_name, slot_class = slot_name.split(":")
     request = context.get('request')
     lang = translation.get_language()
     if extra and str(extra) != "":
@@ -37,7 +40,7 @@ def slot(context, slot_name, path_override=None, extra=None):
     color = {'background': hex, 'contrast': get_contrast_color(hex)}
 
     return {'portlets': portlets, 'slot_name': slot_name, 'request': request,
-            'color': color}
+            'color': color, 'slot_class': slot_class}
 
 def get_color(name):
     hexstring = md5((name).encode('latin1', 'replace')).hexdigest()[:2]

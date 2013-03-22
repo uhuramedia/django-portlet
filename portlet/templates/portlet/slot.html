@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="slot{% if request.user.is_staff %} staffview{% endif %}" id="slot-{{ slot_name }}">
+<div class="slot{% if request.user.is_staff %} staffview{% endif %} slot-{{ slot_class }}" id="slot-{{ slot_name }}">
     {% if request.user.is_staff %}
         <div class="staff staff-top">
             <h2>{{ slot_name }} <a href="#" class="add-portlet" title="{% trans "Add Portlet" %}">+{% trans "Add" %}</a></h2>
