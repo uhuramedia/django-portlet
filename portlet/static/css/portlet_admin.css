@@ -77,12 +77,11 @@
 #portletStaffToggleOverlay a {
     display: block;
     padding: 10px;
-    height: 20px;
     width: 200px;
     font-family: "Lucida Grande", verdana, sans-serif;
     color: #000!important;
 }
-#portletStaffOverlay { 
+#portletStaffOverlay {
     font-family: "Lucida Grande", verdana, sans-serif;
     position: fixed;
     top: 40px;
