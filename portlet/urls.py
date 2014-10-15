@@ -1,4 +1,9 @@
-from django.conf.urls import patterns
+import django
+
+if django.get_version() >= '1.5':
+    from django.conf.urls import *
+else:
+    from django.conf.urls.defaults import *
 
 urlpatterns = patterns('portlet.views',
     (r'^delete/(\d+)/$', 'delete'),
