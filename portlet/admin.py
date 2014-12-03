@@ -25,6 +25,7 @@ class PortletAdmin(admin.ModelAdmin):
     list_display = ('title', 'portlet_type', 'display_title', 'created', 'modified', 'is_assigned')
     ordering = ('title',)
     inlines = [PortletAssignmentInline]
+    search_fields = ('title', 'display_title')
     actions = ('update_type',)
 
     def update_type(self, request, queryset):
