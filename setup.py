@@ -4,12 +4,12 @@ from setuptools import setup, find_packages
 VERSION = "0.2"
 
 setup(
-    name="fm.portlet",
+    name="django-portlet",
     version = VERSION,
-    author="Julian Bez",
+    author="Nar Chhantyal",
     author_email="julian@freshmilk.tv",
     url="https://github.com/Freshmilk/",
-    description="""FM portlet system""",
+    description="""Django portlet system""",
     packages=find_packages(),
     namespace_packages = [],
     include_package_data = True,
