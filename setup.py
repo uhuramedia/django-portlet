@@ -16,7 +16,6 @@ setup(
     package_data={
     'portlet': [
         'templates/portlet/*',
-        'static/*',
         ]
     },
     zip_safe=False,
