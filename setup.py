@@ -13,6 +13,11 @@ setup(
     packages=find_packages(),
     namespace_packages = [],
     include_package_data = True,
+    package_data={
+    'portlet': [
+        'templates/portlet/*',
+        ]
+    },
     zip_safe=False,
     license="None",
     install_requires=['simplejson']
