@@ -44,11 +44,7 @@
     background: #444;
     color: #fff;
 }
-.slot .staff-top {
-    border-radius: 14px 14px 0 0;
-}
 .slot .staff-bottom {
-    border-radius: 0 0 14px 14px;
     clear: both;
 }
 .slot .prohibited .staff {
