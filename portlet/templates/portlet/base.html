@@ -21,28 +21,32 @@
         <li><a href="{{ portlet.get_edit_link }}?_popup=1" class="edit popuplink">{% trans "Edit" %}</a></li>
     </ul>
 {% endif %}
+
+{% block before_cache %}
 {% cache 900 portlet_fragment portlet.pk portlet.modified.isoformat portlet.vary_on %}{% spaceless %}
     {% block portlet_base %}
-    {% if portlet.display_title %}
-        <div class="header">
-            {% block header %}
-                <h2>
-                    {% block portlet_header_extra %}{% endblock %}
-                    {% if portlet.display_title_link %}
-                        <a href="{{ portlet.display_title_link }}" title="{{ portlet.display_title }}">
-                    {% endif %}
-                        {{ portlet.display_title }}
-                    {% if portlet.display_title_link %}
-                        </a>
-                    {% endif %}
-                </h2>
-            {% endblock %}
+        {% if portlet.display_title %}
+            <div class="header">
+                {% block header %}
+                    <h2>
+                        {% block portlet_header_extra %}{% endblock %}
+                        {% if portlet.display_title_link %}
+                            <a href="{{ portlet.display_title_link }}" title="{{ portlet.display_title }}">
+                        {% endif %}
+                            {{ portlet.display_title }}
+                        {% if portlet.display_title_link %}
+                            </a>
+                        {% endif %}
+                    </h2>
+                {% endblock %}
+            </div>
+        {% endif %}
+        {% block portlet_content_base %}
+        <div class="content">
+            {% block content %}{% endblock %}
         </div>
-    {% endif %}
-    {% block portlet_content_base %}
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
+        {% endblock %}
     {% endblock %}
-    {% endblock %}
-{% endspaceless %}{% endcache %}
+{% endspaceless %}
+{% endcache %}
+{% endblock %}
