@@ -7,7 +7,7 @@ from portlet.models import PortletAssignment
 register = template.Library()
 
 @register.inclusion_tag('portlet/slot.html', takes_context=True)
-def slot(context, slot_name, path_override=None, extra=None):
+def slot(context, slot_name, path_override=None, extra=None, **kwargs):
     if slot_name == "":
         raise TemplateSyntaxError("Slot name must be non-empty string")
     slot_class = ""
@@ -39,8 +39,18 @@ def slot(context, slot_name, path_override=None, extra=None):
     hex = get_color(slot_name)
     color = {'background': hex, 'contrast': get_contrast_color(hex)}
 
-    return {'portlets': portlets, 'slot_name': slot_name, 'request': request,
-            'color': color, 'slot_class': slot_class}
+    ctx = {
+        'portlets': portlets,
+        'slot_name': slot_name,
+        'request': request,
+        'color': color,
+        'slot_class': slot_class
+    }
+    # also include any kwargs in context
+    ctx.update(**kwargs)
+
+    return ctx
+
 
 def get_color(name):
     hexstring = md5((name).encode('latin1', 'replace')).hexdigest()[:2]
