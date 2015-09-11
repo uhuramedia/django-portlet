@@ -17,6 +17,11 @@
                 </div>
             {% endif %}
         {% endif %}
+    {% empty %}
+        {# Try to render default template when no portlet is assigned to a slot. #}
+        {% if default_template %}
+            {% include default_template %}
+        {% endif %}
     {% endfor %}
     {% if request.user.is_staff %}
         <div class="staff staff-bottom">
