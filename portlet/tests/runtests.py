@@ -24,8 +24,8 @@ EXTERNAL_APPS = [
     'django.contrib.sites',
 ]
 INTERNAL_APPS = [
-    'django_nose',
     'portlet',
+    'django_nose',
 ]
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 COVERAGE_MODULE_EXCLUDES = [
