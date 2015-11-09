@@ -19,6 +19,6 @@ setup(
         ]
     },
     zip_safe=False,
-    license="None",
+    license="BSD",
     install_requires=['simplejson']
 )

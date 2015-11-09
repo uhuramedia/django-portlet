@@ -91,8 +91,6 @@ $(function() {
         win.focus();
         return false;
     });
-    var overlay = $('<div id="portletStaffToggleOverlay"><a href="#" id="portletStaffViewToggle">Editieren</a></div>');
-    $('body').append(overlay);
     $("#portletStaffToggleOverlay").show();
     if(localStorage && localStorage.getItem('portletStaffToggleOverlay') == 1) {
     	$(".staff").show();
