@@ -19,8 +19,10 @@ Usage
 
 4. Add this HTML in base template file just before closing body element.
 
-```{% if request.user.is_staff %}
+```
+{% if request.user.is_staff %}
       <div id="portletStaffToggleOverlay"><a href="#" id="portletStaffViewToggle">Editieren</a></div>
-{% endif %}``
+{% endif %}
+```
 
 
