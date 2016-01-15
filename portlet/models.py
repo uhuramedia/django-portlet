@@ -6,7 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.template import loader, Context
 from django.template.defaultfilters import slugify
 from django.core import urlresolvers
-from django.db.models.fields.related import SingleRelatedObjectDescriptor
 from django.conf import settings
 from django.utils import translation
 
