@@ -8,6 +8,7 @@ from django.template.defaultfilters import slugify
 from django.core import urlresolvers
 from django.conf import settings
 from django.utils import translation
+from django.db.models.fields.related_descriptors import ReverseOneToOneDescriptor
 
 class Portlet(models.Model):
     template = 'portlet/base.html'
@@ -77,7 +78,7 @@ class Portlet(models.Model):
     @staticmethod
     def get_subclasses():
         return [o for o in dir(Portlet)
-                      if isinstance(getattr(Portlet, o), SingleRelatedObjectDescriptor)\
+                      if isinstance(getattr(Portlet, o), ReverseOneToOneDescriptor)\
                       and issubclass(getattr(Portlet,o).related.model, Portlet)]
 
     class Meta:
