@@ -8,7 +8,7 @@ setup(
     version = VERSION,
     author="Nar Chhantyal",
     author_email="julian@freshmilk.tv",
-    url="https://github.com/Freshmilk/",
+    url="https://github.com/uhuramedia",
     description="""Django portlet system""",
     packages=find_packages(),
     namespace_packages = [],

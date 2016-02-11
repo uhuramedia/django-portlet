@@ -1,0 +1,4 @@
+django-nose
+django-coverage
+django==1.8.9
+coverage
