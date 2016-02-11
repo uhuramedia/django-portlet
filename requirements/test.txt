@@ -1,4 +1,4 @@
 django-nose
 django-coverage
-django
+django==1.8.9
 coverage
