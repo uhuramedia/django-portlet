@@ -1,7 +1,9 @@
+from importlib import import_module
+
 from django.conf import settings
 from django.contrib import admin
 from django.db import models
-from django.utils.importlib import import_module
+from django.core.exceptions import ImproperlyConfigured
 from portlet.models import HTMLPortlet, Portlet, PortletAssignment, \
     PlainTextPortlet, ImagePortlet, FlashPortlet, SnippetPortlet, DownloadPortlet
 
