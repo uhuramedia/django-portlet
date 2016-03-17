@@ -16,8 +16,7 @@ setup(
     package_data={
     'portlet': [
         'templates/portlet/*',
-        'locale/de/LC_MESSAGES/django.po',
-        'locale/de/LC_MESSAGES/django.mo'
+        'locale/de/LC_MESSAGES/django.po'
         ]
     },
     zip_safe=False,
