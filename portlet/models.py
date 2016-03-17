@@ -221,6 +221,10 @@ class ImagePortlet(Portlet):
     link = models.CharField(max_length=255, blank=True)
     classes = models.CharField(max_length=255, blank=True)
 
+    class Meta:
+        verbose_name = _('Image portlet')
+        verbose_name_plural = _('Image portlets')
+
 
 class FlashPortlet(Portlet):
     template = 'portlet/flash.html'
@@ -228,6 +232,10 @@ class FlashPortlet(Portlet):
     width = models.IntegerField(default=300)
     height = models.IntegerField(default=200)
     flash_vars = models.CharField(help_text=u"clickTAG=http://www.example.com/", max_length=255, blank=True, default="")
+
+    class Meta:
+        verbose_name = _('Flash portlet')
+        verbose_name_plural = _('Flash portlets')
 
 
 class DownloadPortlet(Portlet):
@@ -238,4 +246,8 @@ class DownloadPortlet(Portlet):
     alt_text = models.CharField(max_length=255, blank=True)
     link = models.CharField(max_length=255, blank=True)
     classes = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        verbose_name = _('Download portlet')
+        verbose_name_plural = _('Download portlets')
 

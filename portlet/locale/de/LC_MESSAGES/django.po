@@ -94,6 +94,30 @@ msgstr "Nur-Text-Portlet"
 msgid "Plain text portlets"
 msgstr "Nur-Text-Portlets"
 
+#: models.py:225
+msgid "Image portlet"
+msgstr "Bilder-Portlets"
+
+#: models.py:226
+msgid "Image portlets"
+msgstr "Bilder-Portlets"
+
+#: models.py:237
+msgid "Flash portlet"
+msgstr "Flash-Portlets"
+
+#: models.py:238
+msgid "Flash portlets"
+msgstr "Flash-Portlets"
+
+#: models.py:251
+msgid "Download portlet"
+msgstr "Download-Portlets"
+
+#: models.py:252
+msgid "Download portlets"
+msgstr "Download-Portlets"
+
 #: models.py:235
 msgid "Datei"
 msgstr ""
