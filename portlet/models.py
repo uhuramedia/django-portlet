@@ -8,7 +8,12 @@ from django.template.defaultfilters import slugify
 from django.core import urlresolvers
 from django.conf import settings
 from django.utils import translation
-from django.db.models.fields.related_descriptors import ReverseOneToOneDescriptor
+try:
+   from django.db.models.fields.related_descriptors import ReverseOneToOneDescriptor
+except Exception, e:
+    from django.db.models.fields.related import SingleRelatedObjectDescriptor as ReverseOneToOneDescriptor
+
+
 
 class Portlet(models.Model):
     template = 'portlet/base.html'
