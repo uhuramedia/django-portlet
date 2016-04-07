@@ -45,7 +45,7 @@ msgstr "Modifiziert"
 
 #: env/lib/python2.7/site-packages/portlet/models.py:70
 msgid "Is assigned"
-msgstr ""
+msgstr "In Benutzung"
 
 #: env/lib/python2.7/site-packages/portlet/models.py:87
 msgid "Portlet"
