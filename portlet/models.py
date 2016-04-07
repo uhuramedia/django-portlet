@@ -15,9 +15,9 @@ class Portlet(models.Model):
     title = models.CharField(_("Title"), max_length=100)
     display_title = models.CharField(_("Displayed title"), max_length=255, blank=True, default="")
     display_title_link = models.CharField(_("Displayed title link"), max_length=255, blank=True, default="")
-    portlet_type = models.SlugField(editable=False)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    modified = models.DateTimeField(auto_now=True, editable=False)
+    portlet_type = models.SlugField(editable=False, verbose_name=_("Portlet Type"))
+    created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name=_('Created at'))
+    modified = models.DateTimeField(auto_now=True, editable=False, verbose_name=_('Modified at'))
 
     def slug(self, lang=None):
         return slugify(self.title)
@@ -66,6 +66,8 @@ class Portlet(models.Model):
         return self.portletassignment_set.all().count() > 0
 
     is_assigned.boolean = True
+
+    is_assigned.short_description = _("Is assigned")
 
     @staticmethod
     def select_subclasses(*subclasses):
@@ -229,9 +231,9 @@ class ImagePortlet(Portlet):
 class FlashPortlet(Portlet):
     template = 'portlet/flash.html'
     swf = models.FileField(upload_to="portletflash")
-    width = models.IntegerField(default=300)
-    height = models.IntegerField(default=200)
-    flash_vars = models.CharField(help_text=u"clickTAG=http://www.example.com/", max_length=255, blank=True, default="")
+    width = models.IntegerField(default=300, verbose_name=_("Width"))
+    height = models.IntegerField(default=200, verbose_name=_("Height"))
+    flash_vars = models.CharField(help_text=u"clickTAG=http://www.example.com/", max_length=255, blank=True, default="", verbose_name=_("Flash vars"))
 
     class Meta:
         verbose_name = _('Flash portlet')
