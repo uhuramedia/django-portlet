@@ -21,5 +21,5 @@ setup(
     },
     zip_safe=False,
     license="BSD",
-    install_requires=['simplejson']
+    install_requires=['simplejson', 'django-ajax-selects']
 )

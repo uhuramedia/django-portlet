@@ -63,7 +63,7 @@ def add(request):
         for p in portlet_list:
             if not data.has_key(p.portlet_type):
                 data[p.portlet_type] = []
-            data[p.portlet_type].append({'title': p.title, 'pk': p.pk})
+            data[p.portlet_type].append({'title': p.title, 'pk': p.pk, 'template':p.get_template()})
         data = [ {'category': k, 'portlets': v} for k, v in data.items()]
         data.sort(lambda x, y: cmp(len(y['portlets']), len(x['portlets'])))
         return HttpResponse(simplejson.dumps(data))

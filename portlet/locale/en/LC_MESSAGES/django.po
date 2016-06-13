@@ -3,199 +3,198 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-10 12:15+0200\n"
-"PO-Revision-Date: 2016-03-18 10:28+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: de\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7\n"
 
 #: portlet/portlet/models.py:17
 msgid "Title"
-msgstr "Titel"
+msgstr ""
 
 #: portlet/portlet/models.py:18
 msgid "Displayed title"
-msgstr "Anzeigetitel"
+msgstr ""
 
 #: portlet/portlet/models.py:19
 msgid "Displayed title link"
-msgstr "Link für Anzeigetitel"
+msgstr ""
 
 #: portlet/portlet/models.py:20
 msgid "Portlet Type"
-msgstr "Portlet Typ"
+msgstr ""
 
 #: portlet/portlet/models.py:21
 msgid "Created at"
-msgstr "Erstellt"
+msgstr ""
 
 #: portlet/portlet/models.py:22
 msgid "Modified at"
-msgstr "Modifiziert"
+msgstr ""
 
 #: portlet/portlet/models.py:79
 msgid "Is assigned"
-msgstr "In Benutzung"
+msgstr ""
 
 #: portlet/portlet/models.py:96
 msgid "Portlet"
-msgstr "Portlet"
+msgstr ""
 
 #: portlet/portlet/models.py:97
 msgid "Portlets"
-msgstr "Porlets"
+msgstr ""
 
 #: portlet/portlet/models.py:116
 msgid "Path"
-msgstr "Pfad"
+msgstr ""
 
 #: portlet/portlet/models.py:117
 msgid "Inherit"
-msgstr "Vererben"
+msgstr ""
 
 #: portlet/portlet/models.py:117
 msgid "Inherits this portlet to all sub-paths"
-msgstr "Auf Unterseiten vererben"
+msgstr ""
 
 #: portlet/portlet/models.py:118
 msgid "Slot"
-msgstr "Slot"
+msgstr ""
 
 #: portlet/portlet/models.py:119
 msgid "Position"
-msgstr "Position"
+msgstr ""
 
 #: portlet/portlet/models.py:120
 msgid "Prohibit"
-msgstr "Blockiert"
+msgstr ""
 
 #: portlet/portlet/models.py:120
 msgid "Blocks this portlet"
-msgstr "Hier blockieren"
+msgstr ""
 
 #: portlet/portlet/models.py:121 portlet/portlet/templates/portlet/base.html:6
 msgid "Language"
-msgstr "Sprache"
+msgstr ""
 
 #: portlet/portlet/models.py:196
 msgid "Portlet Assignment"
-msgstr "Portlet-Zuweisung"
+msgstr ""
 
 #: portlet/portlet/models.py:197
 msgid "Portlet Assignments"
-msgstr "Portlet-Zuweisungen"
+msgstr ""
 
 #: portlet/portlet/models.py:207
 msgid "HTML portlet"
-msgstr "HTML-Portlet"
+msgstr ""
 
 #: portlet/portlet/models.py:208
 msgid "HTML portlets"
-msgstr "HTML-Portlets"
+msgstr ""
 
 #: portlet/portlet/models.py:216
 msgid "Plain text portlet"
-msgstr "Nur-Text-Portlet"
+msgstr ""
 
 #: portlet/portlet/models.py:217
 msgid "Plain text portlets"
-msgstr "Nur-Text-Portlets"
+msgstr ""
 
 #: portlet/portlet/models.py:236
 msgid "Image portlet"
-msgstr "Bilder-Portlets"
+msgstr ""
 
 #: portlet/portlet/models.py:237
 msgid "Image portlets"
-msgstr "Bilder-Portlets"
+msgstr ""
 
 #: portlet/portlet/models.py:243
 msgid "Width"
-msgstr "Breite"
+msgstr ""
 
 #: portlet/portlet/models.py:244
 msgid "Height"
-msgstr "Höhe"
+msgstr ""
 
 #: portlet/portlet/models.py:245
 msgid "Flash vars"
-msgstr "Flash Variablen"
+msgstr ""
 
 #: portlet/portlet/models.py:248
 msgid "Flash portlet"
-msgstr "Flash-Portlets"
+msgstr ""
 
 #: portlet/portlet/models.py:249
 msgid "Flash portlets"
-msgstr "Flash-Portlets"
+msgstr ""
 
 #: portlet/portlet/models.py:254
 msgid "Datei"
-msgstr "Datei"
+msgstr ""
 
 #: portlet/portlet/models.py:255
 msgid "Vorschau Bild"
-msgstr "Vorschaubild"
+msgstr ""
 
 #: portlet/portlet/models.py:262
 msgid "Download portlet"
-msgstr "Download-Portlets"
+msgstr ""
 
 #: portlet/portlet/models.py:263
 msgid "Download portlets"
-msgstr "Download-Portlets"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/base.html:8
 msgid "Type"
-msgstr "Typ"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/base.html:9
 msgid "prohibited here"
-msgstr "Hier unterbunden"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/base.html:11
 msgid "origin is"
-msgstr "Quelle ist"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/base.html:16
 msgid "Block here"
-msgstr "Hier blockieren"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/base.html:17
 msgid "Block here and from all sub-pages"
-msgstr "Hier+Unterseiten blockieren"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/base.html:19
 msgid "Inherit this to sub-pages"
-msgstr "Auf Unterseiten vererben"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/base.html:19
 msgid "inherited,not inherited"
-msgstr "Vererbt,Nicht vererbt"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/base.html:20
 msgid "Delete"
-msgstr "Löschen"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/base.html:21
 msgid "Edit"
-msgstr "Bearbeiten"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/slot.html:5
 #: portlet/portlet/templates/portlet/slot.html:28
 msgid "Add Portlet"
-msgstr "Portlet hinzufügen"
+msgstr ""
 
 #: portlet/portlet/templates/portlet/slot.html:5
 #: portlet/portlet/templates/portlet/slot.html:28
 msgid "Add"
-msgstr "Hinzufügen"
+msgstr ""

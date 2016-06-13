@@ -51,7 +51,7 @@ $(function() {
 		var pId = getPortletId(portlet);
 		$.get('/portlet/delete/' + pId + '/', function(data) {
 			if (data == '') {
-				portlet.slideUp().remove();    
+				portlet.slideUp().remove();
 			}
 			else {
 				alert(data);
@@ -112,7 +112,7 @@ $(function() {
 	        $('body').append(overlay);
 	        var slot = getSlot($(this));
 	        var slotId = getSlotId(slot);
-	
+
 	        $.get('/portlet/add/', function(data, textStatus, xdr) {
 	            overlay.html('');
 	            var html = '<ul class="portletcategories" id="portletcategories">'
@@ -121,7 +121,7 @@ $(function() {
 	                html += '<li class="portletcategory"><a href="#">'+ item.category;
 	                html += '</a><ul>';
 	                for (var j = 0; j < item.portlets.length; j++) {
-	                    html += '<li class="portlet"><a href="/portlet/add/?slot=' + slotId + '&path=' + location.pathname + '&pk=' + item.portlets[j].pk + '">' + item.portlets[j].title + '</a>';
+	                    html += '<li class="portlet"><a href="/portlet/add/?slot=' + slotId + '&path=' + location.pathname + '&pk=' + item.portlets[j].pk + '">' + item.portlets[j].title +' '+item.portlets[j].template+ '</a>';
 	                }
 	                html += '</ul></li>';
 	            }

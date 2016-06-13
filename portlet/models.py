@@ -9,6 +9,8 @@ from django.core import urlresolvers
 from django.conf import settings
 from django.utils import translation
 from django.db.models.fields.related_descriptors import ReverseOneToOneDescriptor
+from model_utils.managers import InheritanceManager
+
 
 class Portlet(models.Model):
     template = 'portlet/base.html'
@@ -18,6 +20,8 @@ class Portlet(models.Model):
     portlet_type = models.SlugField(editable=False, verbose_name=_("Portlet Type"))
     created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name=_('Created at'))
     modified = models.DateTimeField(auto_now=True, editable=False, verbose_name=_('Modified at'))
+
+    objects = InheritanceManager()
 
     def slug(self, lang=None):
         return slugify(self.title)
@@ -64,6 +68,11 @@ class Portlet(models.Model):
 
     def is_assigned(self):
         return self.portletassignment_set.all().count() > 0
+
+
+    def get_template(self):
+        instance = Portlet.objects.get_subclass(id=self.id)
+        return instance.template.split("/")[-1]
 
     is_assigned.boolean = True
 

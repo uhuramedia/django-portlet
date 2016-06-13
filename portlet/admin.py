@@ -8,6 +8,9 @@ from portlet.models import HTMLPortlet, Portlet, PortletAssignment, \
     PlainTextPortlet, ImagePortlet, FlashPortlet, SnippetPortlet, DownloadPortlet
 
 
+from .forms import PortletAdminForm
+
+
 def get_class_from_string(str):
     path = str
     i = path.rfind('.')
@@ -29,6 +32,7 @@ class PortletAdmin(admin.ModelAdmin):
     inlines = [PortletAssignmentInline]
     search_fields = ('title', 'display_title')
     actions = ('update_type',)
+    form = PortletAdminForm
 
     def update_type(self, request, queryset):
         for obj in queryset:
