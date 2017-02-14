@@ -1,15 +1,11 @@
-import django
+from django.conf.urls import *
+from .views import *
 
-if django.get_version() >= '1.5':
-    from django.conf.urls import *
-else:
-    from django.conf.urls.defaults import *
-
-urlpatterns = patterns('portlet.views',
-    (r'^delete/(\d+)/$', 'delete'),
-    (r'^inherit/(\d+)/$', 'inherit'),
-    (r'^add/$', 'add'),
-    (r'^moveup/(\d+)/$', 'moveup'),
-    (r'^movedown/(\d+)/$', 'movedown'),
-    (r'^move/(\d+)/(-?\d+)/(.+)/$', 'move'),
-)
+urlpatterns = [
+    url(r'^delete/(\d+)/$', delete),
+    url(r'^inherit/(\d+)/$', inherit),
+    url(r'^add/$', add),
+    url(r'^moveup/(\d+)/$', moveup),
+    url(r'^movedown/(\d+)/$', movedown),
+    url(r'^move/(\d+)/(-?\d+)/(.+)/$', move),
+]
